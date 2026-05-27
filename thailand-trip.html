@@ -408,16 +408,17 @@ body {
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--ink-light);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 .day-banner-title {
   font-family: 'Noto Serif SC', serif;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 700;
   color: var(--ink);
   line-height: 1.2;
+  letter-spacing: -0.5px;
 }
-.day-banner-date { margin-top: 6px; font-size: 13px; color: var(--ink-light); }
+.day-banner-date { margin-top: 8px; font-size: 13px; color: var(--ink-light); line-height: 1.6; }
 
 /* 时间线 */
 .timeline { padding: 0 28px; }
@@ -1045,11 +1046,12 @@ body {
 
 /* ─── 飞行信息卡 ─────────────────────── */
 .flight-card {
-  margin: 20px 28px 0;
-  padding: 18px 20px;
-  background: var(--ink);
+  margin: 16px 0 0;
+  padding: 16px 18px;
+  background: var(--cream);
+  border: 1px solid var(--rule);
   border-radius: var(--radius);
-  color: var(--white);
+  color: var(--ink);
 }
 .flight-row {
   display: flex;
@@ -1059,27 +1061,29 @@ body {
 }
 .flight-city {
   font-family: 'DM Sans', sans-serif;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 700;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   line-height: 1;
+  color: var(--ink);
 }
 .flight-arrow {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--gold);
   flex: 1;
   text-align: center;
 }
 .flight-info {
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(250,248,245,0.1);
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule-light);
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 }
 .flight-detail { }
-.fl-label { font-size: 10px; color: rgba(250,248,245,0.4); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 3px; }
-.fl-val { font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--white); font-weight: 500; }
+.fl-label { font-size: 10px; color: var(--ink-faint); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 3px; }
+.fl-val { font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--ink-mid); font-weight: 500; }
 
 /* ─── 6人联排心情打卡 ────────────────── */
 .mood6-wrap {
