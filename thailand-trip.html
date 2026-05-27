@@ -1,0 +1,3583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>泰国 · 2026 国庆</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;700&family=Noto+Sans+SC:wght@300;400;500&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1612;
+  --ink-mid: #5a4f47;
+  --ink-light: #9c8f85;
+  --ink-faint: #c8beb8;
+  --cream: #f5f0ea;
+  --cream-warm: #ede8e0;
+  --white: #faf8f5;
+  --gold: #c9943a;
+  --gold-light: #e8b85a;
+  --rule: rgba(26,22,18,0.12);
+  --rule-light: rgba(26,22,18,0.07);
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow-soft: 0 2px 16px rgba(26,22,18,0.08);
+  --shadow-card: 0 1px 4px rgba(26,22,18,0.06), 0 4px 24px rgba(26,22,18,0.06);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans SC', 'DM Sans', sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── 导航 ─────────────────────────── */
+.nav-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 900;
+  background: rgba(250,248,245,0.94);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid var(--rule-light);
+  display: flex;
+  padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+}
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: opacity 0.2s;
+  opacity: 0.4;
+}
+.nav-item.active { opacity: 1; }
+.nav-icon { font-size: 18px; line-height: 1; }
+.nav-label {
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  font-family: 'DM Sans', sans-serif;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.nav-item.active .nav-label { color: var(--gold); font-weight: 500; }
+.nav-item.active .nav-icon { filter: none; }
+
+/* ─── 页面切换 ──────────────────────── */
+.page { display: none; min-height: 100vh; padding-bottom: 80px; }
+.page.active { display: block; animation: pageIn 0.3s ease; }
+@keyframes pageIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+/* ─── 封面多屏 ──────────────────────── */
+#page-home {
+  display: none;
+  background: var(--ink);
+  padding-bottom: 80px;
+}
+#page-home.active { display: block; }
+
+.cover-screen { position: relative; overflow: hidden; }
+
+/* 屏一 */
+.s1 { min-height: 100svh; display: flex; flex-direction: column; background: var(--ink); }
+
+.cover-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 30%, rgba(201,148,58,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 20% 80%, rgba(201,148,58,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  position: relative; z-index: 1;
+  padding: 56px 28px 0;
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.cover-tag {
+  font-family: 'DM Sans', sans-serif; font-size: 11px;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
+}
+.cover-date-tag {
+  font-family: 'DM Sans', sans-serif; font-size: 11px;
+  letter-spacing: 1px; color: rgba(250,248,245,0.4);
+}
+.cover-body {
+  position: relative; z-index: 1; flex: 1;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 28px 28px;
+}
+.cover-headline {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(52px, 18vw, 88px);
+  font-weight: 700; line-height: 0.92; letter-spacing: -2px;
+  color: var(--white); margin-bottom: 28px;
+}
+.cover-headline em { font-style: normal; color: var(--gold); }
+.cover-rule { width: 32px; height: 1px; background: var(--gold); margin-bottom: 20px; }
+.cover-sub {
+  font-size: 15px; color: rgba(250,248,245,0.5);
+  line-height: 2; margin-bottom: 20px;
+}
+.cover-tagline {
+  font-family: 'DM Sans', sans-serif; font-size: 12px;
+  letter-spacing: 2px; color: var(--gold); opacity: 0.85;
+}
+.cover-deco-text {
+  position: absolute; bottom: 100px; right: -10px;
+  font-family: 'DM Sans', sans-serif; font-size: 96px; font-weight: 700;
+  color: rgba(255,255,255,0.03); letter-spacing: -4px;
+  pointer-events: none; user-select: none;
+}
+.cover-scroll-hint {
+  position: relative; z-index: 1;
+  text-align: center; padding: 0 0 20px;
+  font-family: 'DM Sans', sans-serif; font-size: 11px;
+  letter-spacing: 2px; color: rgba(250,248,245,0.25);
+  animation: fadeUpDown 2.5s ease-in-out infinite;
+}
+@keyframes fadeUpDown {
+  0%,100% { opacity:.25; transform:translateY(0); }
+  50% { opacity:.6; transform:translateY(4px); }
+}
+
+/* 屏二：泰兰德金句 */
+.s2 {
+  background: var(--white); min-height: 55svh;
+  display: flex; align-items: center; justify-content: center;
+  border-top: 1px solid var(--rule-light);
+}
+.s2-inner { padding: 52px 28px; width: 100%; }
+.s2-label {
+  font-family: 'DM Sans', sans-serif; font-size: 10px;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--ink-faint); margin-bottom: 20px;
+}
+.s2-quote {
+  font-family: 'Noto Serif SC', serif; font-size: 28px;
+  font-weight: 700; line-height: 1.5; color: var(--ink);
+  letter-spacing: -0.5px; margin-bottom: 28px;
+}
+.s2-quote em {
+  font-style: normal; color: var(--gold);
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 1px;
+}
+.s2-rule { width: 24px; height: 1px; background: var(--rule); margin-bottom: 20px; }
+.s2-members { display: flex; flex-wrap: wrap; gap: 0; }
+.s2-members span {
+  font-family: 'DM Sans', sans-serif; font-size: 11px;
+  color: var(--ink-light); letter-spacing: 1px; text-transform: uppercase;
+  margin-right: 14px; margin-bottom: 6px;
+}
+
+/* 屏三：高光时刻 */
+.s3 {
+  background: var(--ink); min-height: 65svh;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.s3-inner { padding: 48px 28px 52px; width: 100%; }
+.s3-question {
+  font-family: 'Noto Serif SC', serif; font-size: 17px;
+  font-weight: 400; line-height: 2;
+  color: rgba(250,248,245,0.5); margin-bottom: 36px;
+}
+.s3-highlights { display: flex; flex-direction: column; }
+.s3-hl-item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.s3-hl-item:last-child { border-bottom: none; }
+.s3-hl-icon { font-size: 28px; flex-shrink: 0; width: 36px; text-align: center; }
+.s3-hl-text {
+  font-family: 'Noto Serif SC', serif; font-size: 15px;
+  font-weight: 700; color: var(--white); line-height: 1.6;
+}
+.s3-hl-text span {
+  display: block; font-family: 'DM Sans', sans-serif;
+  font-size: 10px; font-weight: 400; color: var(--gold);
+  letter-spacing: 1.5px; text-transform: uppercase; margin-top: 3px;
+}
+.s3-footer {
+  margin-top: 32px; font-family: 'Noto Serif SC', serif;
+  font-size: 20px; font-weight: 700; color: rgba(250,248,245,0.6);
+}
+.s3-footer em { font-style: normal; color: var(--gold); }
+
+/* 屏四：城市对比 */
+.s4 { background: var(--cream); border-top: 1px solid var(--rule-light); min-height: 60svh; }
+.s4-inner { padding: 48px 28px 52px; }
+.s4-city-label {
+  font-family: 'DM Sans', sans-serif; font-size: 10px;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--ink-light); margin-bottom: 6px;
+}
+.s4-city-zh {
+  font-family: 'Noto Serif SC', serif; font-size: 36px;
+  font-weight: 700; color: var(--ink); letter-spacing: -1px;
+  margin-bottom: 14px; line-height: 1;
+}
+.s4-desc { font-size: 15px; color: var(--ink-mid); line-height: 2; margin-bottom: 0; }
+.s4-desc em { font-style: normal; color: var(--ink); font-weight: 600; }
+.s4-divider { width: 100%; height: 1px; background: var(--rule); margin: 32px 0; }
+.s4-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 24px; padding: 13px 24px;
+  background: var(--ink); color: var(--white);
+  border-radius: var(--radius);
+  font-family: 'DM Sans', sans-serif; font-size: 13px;
+  letter-spacing: 0.5px; cursor: pointer; transition: opacity 0.2s;
+}
+.s4-cta:active { opacity: 0.7; }
+
+/* ─── 页面通用 header ─────────────────── */
+.page-header {
+  padding: 52px 28px 28px;
+  border-bottom: 1px solid var(--rule-light);
+  margin-bottom: 0;
+}
+.page-header-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 10px;
+}
+.page-header-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: var(--ink);
+}
+.page-header-sub {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--ink-light);
+  line-height: 1.6;
+}
+
+/* ─── 通用 section ───────────────────── */
+.section { padding: 24px 28px; border-bottom: 1px solid var(--rule-light); }
+.section:last-child { border-bottom: none; }
+.section-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 16px;
+}
+
+/* ─── 行程概览大数字 ─────────────────── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 0;
+}
+.stat-cell {
+  padding: 18px 14px;
+  border-right: 1px solid var(--rule);
+  text-align: center;
+}
+.stat-cell:last-child { border-right: none; }
+.stat-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-lbl { font-size: 10px; color: var(--ink-light); letter-spacing: 0.3px; }
+
+/* ─── 清单 ──────────────────────────── */
+.check-list { display: flex; flex-direction: column; }
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--rule-light);
+  cursor: pointer;
+  transition: opacity 0.2s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.check-row:last-child { border-bottom: none; }
+.check-box {
+  width: 20px; height: 20px;
+  border: 1.5px solid var(--ink-faint);
+  border-radius: 4px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.check-box.checked {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.check-box.checked::after {
+  content: '';
+  width: 5px; height: 9px;
+  border-right: 1.5px solid #fff;
+  border-bottom: 1.5px solid #fff;
+  transform: rotate(45deg) translateY(-1px);
+}
+.check-text {
+  font-size: 14px;
+  color: var(--ink-mid);
+  line-height: 1.4;
+  flex: 1;
+}
+.check-row.checked .check-text {
+  text-decoration: line-through;
+  color: var(--ink-light);
+}
+.badge {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: var(--ink);
+  color: var(--white);
+  flex-shrink: 0;
+}
+.badge.warn { background: var(--gold); }
+
+/* ─── 行程 Day 切换 ─────────────────── */
+.day-scroll {
+  display: flex;
+  gap: 0;
+  padding: 0 28px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-bottom: 1px solid var(--rule-light);
+  background: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.day-scroll::-webkit-scrollbar { display: none; }
+.day-tab {
+  flex-shrink: 0;
+  padding: 16px 18px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--ink-light);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.day-tab.active {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+  font-weight: 500;
+}
+
+.day-panel { display: none; }
+.day-panel.active { display: block; }
+
+.day-banner {
+  padding: 28px 28px 24px;
+  border-bottom: 1px solid var(--rule-light);
+}
+.day-banner-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 6px;
+}
+.day-banner-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.day-banner-date { margin-top: 6px; font-size: 13px; color: var(--ink-light); }
+
+/* 时间线 */
+.timeline { padding: 0 28px; }
+.tl-item {
+  display: flex;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--rule-light);
+}
+.tl-item:last-of-type { border-bottom: none; }
+.tl-left { width: 44px; flex-shrink: 0; text-align: right; }
+.tl-time {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: var(--ink-light);
+  letter-spacing: 0.3px;
+  padding-top: 1px;
+}
+.tl-right { flex: 1; }
+.tl-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 5px;
+  line-height: 1.3;
+}
+.tl-note {
+  font-size: 13px;
+  color: var(--ink-light);
+  line-height: 1.7;
+}
+.tl-tip {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: var(--cream);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--ink-mid);
+  line-height: 1.6;
+}
+
+/* 酒店信息卡 */
+.hotel-card {
+  margin-top: 10px;
+  padding: 12px 14px;
+  background: var(--cream);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--ink-faint);
+}
+.hotel-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+  letter-spacing: 0.2px;
+}
+.hotel-addr {
+  font-size: 12px;
+  color: var(--ink-mid);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+.hotel-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.hotel-tags span {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: var(--ink-light);
+  background: var(--cream-warm);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+/* 交通节点样式 */
+.tl-transport {
+  font-size: 13px !important;
+  color: var(--ink-light) !important;
+  font-weight: 400 !important;
+}
+.tl-item:has(.tl-transport) {
+  padding: 12px 0;
+  opacity: 0.8;
+}
+.tl-item:has(.tl-transport) .tl-time {
+  font-size: 10px;
+  color: var(--ink-faint);
+}
+.tl-item:has(.tl-transport) .tl-note {
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
+/* 航班节点样式 */
+.tl-flight {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: var(--ink) !important;
+  letter-spacing: 0.3px;
+}
+.tl-item:has(.tl-flight) {
+  background: var(--cream);
+  margin: 0 -28px;
+  padding: 14px 28px;
+  border-left: 3px solid var(--gold);
+}
+.tl-item:has(.tl-flight) .tl-note {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--ink-mid);
+  letter-spacing: 0.3px;
+}
+
+/* 心情打卡 */
+.mood-row-wrap {
+  padding: 20px 28px;
+  border-top: 1px solid var(--rule-light);
+}
+.mood-label-txt {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 12px;
+}
+.mood-emoji-row { display: flex; gap: 4px; }
+.mood-btn {
+  flex: 1;
+  background: none;
+  border: 1.5px solid var(--rule);
+  border-radius: var(--radius-sm);
+  padding: 10px 0;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mood-btn.selected {
+  border-color: var(--ink);
+  background: var(--ink);
+  transform: scale(1.05);
+}
+
+/* ─── 攻略 ──────────────────────────── */
+.guide-tabs-row {
+  display: flex;
+  padding: 0 28px;
+  gap: 0;
+  border-bottom: 1px solid var(--rule-light);
+  background: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.guide-tab-btn {
+  padding: 15px 0 13px;
+  margin-right: 28px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--ink-light);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+.guide-tab-btn.active { color: var(--ink); border-bottom-color: var(--ink); font-weight: 500; }
+
+.guide-panel { display: none; }
+.guide-panel.active { display: block; }
+
+.food-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px 28px;
+  border-bottom: 1px solid var(--rule-light);
+}
+.food-row:last-child { border-bottom: none; }
+.food-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: var(--ink-faint);
+  width: 20px;
+  flex-shrink: 0;
+  padding-top: 3px;
+}
+.food-body { flex: 1; }
+.food-name-zh {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.food-name-en {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: var(--ink-light);
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+.food-desc { font-size: 13px; color: var(--ink-mid); line-height: 1.6; }
+.food-price {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--gold);
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.tip-list { padding: 0 28px; }
+.tip-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule-light);
+  align-items: flex-start;
+}
+.tip-item:last-child { border-bottom: none; }
+.tip-icon-box {
+  width: 36px; height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.tip-body { flex: 1; }
+.tip-name { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.tip-desc { font-size: 12px; color: var(--ink-mid); line-height: 1.6; }
+
+/* ─── 费用 ──────────────────────────── */
+.expense-top {
+  padding: 28px;
+  border-bottom: 1px solid var(--rule-light);
+}
+.expense-big-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 8px;
+}
+.expense-big-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  letter-spacing: -2px;
+  margin-bottom: 6px;
+}
+.expense-per-line { font-size: 13px; color: var(--ink-light); }
+.expense-per-line span { color: var(--ink); font-weight: 500; }
+
+.expense-cats-row {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  border-top: 1px solid var(--rule-light);
+}
+.expense-cat-cell {
+  padding: 14px 10px;
+  border-right: 1px solid var(--rule-light);
+  text-align: center;
+}
+.expense-cat-cell:last-child { border-right: none; }
+.ecat-icon { font-size: 16px; margin-bottom: 4px; }
+.ecat-num { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+.ecat-name { font-size: 10px; color: var(--ink-light); }
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius);
+  padding: 15px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: calc(100% - 56px);
+  margin: 24px 28px 0;
+  transition: opacity 0.2s;
+}
+.add-btn:active { opacity: 0.7; }
+
+.expense-list { padding: 0 28px; margin-top: 8px; }
+.expense-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule-light);
+}
+.expense-row:last-child { border-bottom: none; }
+.exp-icon {
+  width: 36px; height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.exp-info { flex: 1; }
+.exp-name { font-size: 14px; color: var(--ink); font-weight: 500; margin-bottom: 2px; }
+.exp-meta { font-size: 11px; color: var(--ink-light); letter-spacing: 0.3px; }
+.exp-amounts { text-align: right; }
+.exp-total { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; color: var(--ink); }
+.exp-per { font-size: 11px; color: var(--ink-light); margin-top: 2px; }
+
+/* ─── 相册 ──────────────────────────── */
+.album-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: none;
+  border: 1.5px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 15px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  cursor: pointer;
+  width: calc(100% - 56px);
+  margin: 24px 28px 20px;
+  transition: all 0.2s;
+}
+.album-btn:active { background: var(--cream); }
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  padding: 0 28px;
+}
+.photo-cell {
+  aspect-ratio: 1;
+  background: var(--cream);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.photo-cell img { width:100%; height:100%; object-fit:cover; display:block; }
+.photo-placeholder {
+  width:100%; height:100%;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:6px; color: var(--ink-faint);
+}
+.photo-placeholder .ph-icon { font-size:22px; }
+.photo-placeholder .ph-label { font-size:10px; letter-spacing:0.5px; }
+
+/* ─── 纪念页 ─────────────────────────── */
+.member-list { padding: 0 28px; }
+.member-row-card {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--rule-light);
+}
+.member-row-card:last-child { border-bottom: none; }
+.member-av {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15px;
+  color: var(--white);
+  flex-shrink: 0;
+}
+.member-right { flex: 1; }
+.member-nm { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+.quote-input {
+  width: 100%;
+  background: var(--cream);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 13px;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: var(--ink-mid);
+  resize: none;
+  min-height: 56px;
+  outline: none;
+  line-height: 1.7;
+  transition: background 0.2s;
+}
+.quote-input:focus { background: var(--cream-warm); }
+.quote-input::placeholder { color: var(--ink-faint); }
+
+/* 投票 */
+.vote-wrap { padding: 0 28px 24px; }
+.vote-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule-light);
+  cursor: pointer;
+}
+.vote-item:last-child { border-bottom: none; }
+.vote-em { font-size: 20px; width: 28px; text-align: center; }
+.vote-body { flex: 1; }
+.vote-name { font-size: 13px; color: var(--ink-mid); margin-bottom: 5px; }
+.vote-bar-bg {
+  height: 3px;
+  background: var(--cream-warm);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.vote-bar-fill {
+  height: 100%;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+.vote-cnt {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--ink-light);
+  min-width: 20px;
+  text-align: right;
+}
+
+/* ─── 弹窗 ──────────────────────────── */
+.modal-bg {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26,22,18,0.45);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  align-items: flex-end;
+}
+.modal-bg.open { display: flex; animation: modalFadeIn 0.2s ease; }
+@keyframes modalFadeIn { from { opacity:0; } to { opacity:1; } }
+
+.modal-sheet {
+  background: var(--white);
+  border-radius: 20px 20px 0 0;
+  padding: 24px 24px calc(28px + env(safe-area-inset-bottom));
+  width: 100%;
+  animation: sheetUp 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes sheetUp { from { transform:translateY(100%); } to { transform:translateY(0); } }
+
+.modal-handle {
+  width: 36px; height: 4px;
+  background: var(--ink-faint);
+  border-radius: 2px;
+  margin: 0 auto 20px;
+}
+.modal-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+.form-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 8px;
+}
+.form-input, .form-select {
+  width: 100%;
+  background: var(--cream);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 13px 14px;
+  font-size: 15px;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: var(--ink);
+  outline: none;
+  margin-bottom: 16px;
+  transition: background 0.2s;
+}
+.form-input:focus, .form-select:focus { background: var(--cream-warm); }
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.cat-opt {
+  background: var(--cream);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 10px 0;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.cat-opt .copt-icon { font-size: 20px; display: block; margin-bottom: 3px; }
+.cat-opt .copt-name { font-size: 10px; color: var(--ink-light); }
+.cat-opt.active {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.cat-opt.active .copt-name { color: rgba(250,248,245,0.7); }
+
+/* 记录人选择 */
+.recorder-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.rec-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 10px;
+  background: var(--cream);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.rec-btn.active {
+  border-color: var(--ink);
+  background: var(--ink);
+}
+.rec-av {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 10px; font-weight: 700;
+  color: #fff; flex-shrink: 0;
+}
+.rec-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.3px;
+  color: var(--ink-mid);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rec-btn.active .rec-name { color: rgba(250,248,245,0.8); }
+
+.submit-btn {
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius);
+  padding: 15px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 4px;
+  transition: opacity 0.2s;
+}
+.submit-btn:active { opacity: 0.7; }
+
+/* ─── 空状态 ────────────────────────── */
+.empty {
+  padding: 56px 28px;
+  text-align: center;
+}
+.empty-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 12px;
+}
+.empty-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 22px;
+  color: var(--ink);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.empty-sub { font-size: 13px; color: var(--ink-light); line-height: 1.7; }
+
+/* ─── 警示区块 ──────────────────────── */
+.alert-block {
+  margin: 0 28px 16px;
+  padding: 14px 16px;
+  background: var(--cream);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--gold);
+}
+.alert-block p {
+  font-size: 13px;
+  color: var(--ink-mid);
+  line-height: 2;
+}
+
+/* ─── 飞行信息卡 ─────────────────────── */
+.flight-card {
+  margin: 20px 28px 0;
+  padding: 18px 20px;
+  background: var(--ink);
+  border-radius: var(--radius);
+  color: var(--white);
+}
+.flight-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+}
+.flight-city {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+.flight-arrow {
+  font-size: 14px;
+  color: var(--gold);
+  flex: 1;
+  text-align: center;
+}
+.flight-info {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(250,248,245,0.1);
+  display: flex;
+  gap: 20px;
+}
+.flight-detail { }
+.fl-label { font-size: 10px; color: rgba(250,248,245,0.4); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 3px; }
+.fl-val { font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--white); font-weight: 500; }
+
+/* ─── 6人联排心情打卡 ────────────────── */
+.mood6-wrap {
+  padding: 20px 28px 24px;
+  border-top: 1px solid var(--rule-light);
+}
+.mood6-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+.mood6-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+.mood6-subtitle {
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+.mood6-list { display: flex; flex-direction: column; gap: 0; }
+.mood6-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule-light);
+}
+.mood6-row:last-child { border-bottom: none; }
+.mood6-av {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--white);
+  flex-shrink: 0;
+}
+.mood6-name {
+  font-size: 12px;
+  color: var(--ink-mid);
+  width: 72px;
+  flex-shrink: 0;
+  letter-spacing: 0.2px;
+  font-family: 'DM Sans', sans-serif;
+}
+.mood6-emojis {
+  display: flex;
+  gap: 3px;
+  flex: 1;
+  justify-content: flex-end;
+}
+.mood6-btn {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  border: 1.5px solid var(--rule-light);
+  background: none;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.18s;
+  padding: 0;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.mood6-btn:active { transform: scale(0.92); }
+.mood6-btn.picked {
+  border-color: var(--ink);
+  background: var(--ink);
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(26,22,18,0.2);
+}
+
+/* ─── 地图打卡 ───────────────────────── */
+.map-progress-bar {
+  padding: 16px 28px 12px;
+  border-bottom: 1px solid var(--rule-light);
+}
+.map-prog-inner { }
+.map-prog-txt {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--ink-light);
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 8px;
+}
+.map-prog-txt span { color: var(--ink); font-weight: 600; }
+.map-prog-bg {
+  height: 3px;
+  background: var(--cream-warm);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.map-prog-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: width 0.5s cubic-bezier(0.34,1.2,0.64,1);
+}
+
+.map-wrap {
+  padding: 16px 20px 8px;
+  background: var(--cream);
+  border-bottom: 1px solid var(--rule-light);
+  display: flex;
+  justify-content: center;
+}
+#thailand-map {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+}
+
+/* 国土填充 */
+.th-land {
+  fill: var(--cream-warm);
+  stroke: rgba(26,22,18,0.18);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+/* 打卡点默认状态 */
+.map-pin { cursor: pointer; }
+.pin-ring {
+  fill: none;
+  stroke: var(--ink-faint);
+  stroke-width: 1.5;
+  transition: all 0.3s;
+}
+.pin-dot {
+  fill: var(--ink-faint);
+  transition: all 0.3s;
+}
+.pin-label {
+  text-anchor: middle;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 11px;
+  fill: var(--ink-light);
+  transition: fill 0.3s;
+  pointer-events: none;
+}
+.pin-label-en {
+  text-anchor: middle;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  fill: var(--ink-faint);
+  transition: fill 0.3s;
+  pointer-events: none;
+}
+
+/* 点亮状态 */
+.map-pin.lit .pin-ring {
+  stroke: var(--gold);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 5px rgba(201,148,58,0.5));
+}
+.map-pin.lit .pin-dot {
+  fill: var(--gold);
+  filter: drop-shadow(0 0 4px rgba(201,148,58,0.6));
+}
+.map-pin.lit .pin-label { fill: var(--ink); font-weight: 500; }
+.map-pin.lit .pin-label-en { fill: var(--gold-dark, #b87a10); }
+
+/* 地点列表 */
+.map-spot-list {
+  padding: 20px 0 0;
+}
+.spot-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 28px;
+  border-bottom: 1px solid var(--rule-light);
+  cursor: pointer;
+  transition: background 0.15s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.spot-row:active { background: var(--cream); }
+.spot-dot-wrap {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink-faint);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.25s;
+}
+.spot-row.lit .spot-dot-wrap {
+  border-color: var(--gold);
+  background: var(--gold);
+  box-shadow: 0 0 10px rgba(201,148,58,0.35);
+}
+.spot-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+  transition: all 0.25s;
+}
+.spot-row.lit .spot-dot { background: #fff; }
+
+.spot-info { flex: 1; min-width: 0; }
+.spot-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 2px;
+  transition: color 0.2s;
+}
+.spot-desc { font-size: 12px; color: var(--ink-light); line-height: 1.5; }
+.spot-row.lit .spot-name { color: var(--gold-dark, #b87a10); }
+
+.spot-tag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  color: var(--ink-faint);
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.spot-row.lit .spot-tag { color: var(--gold); }
+
+/* ─── 纪录片旁白文字 ─────────────────── */
+.doc-voice {
+  font-size: 14px;
+  color: var(--ink-mid);
+  line-height: 2;
+  letter-spacing: 0.2px;
+  padding: 2px 0;
+  border-left: 2px solid var(--gold);
+  padding-left: 12px;
+  margin-top: 4px;
+}
+
+/* ─── 必吃 / 必买打卡 ─────────────────── */
+.eat-progress-wrap {
+  padding: 20px 28px 16px;
+  border-bottom: 1px solid var(--rule-light);
+}
+.eat-progress-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+.eat-prog-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+.eat-prog-count {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.eat-prog-bar-bg {
+  height: 4px;
+  background: var(--cream-warm);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.eat-prog-bar-fill {
+  height: 100%;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: width 0.5s cubic-bezier(0.34,1.2,0.64,1);
+}
+.eat-prog-hint {
+  font-size: 12px;
+  color: var(--ink-light);
+  line-height: 1.5;
+  transition: color 0.3s;
+}
+
+.eat-list { }
+
+.eat-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 28px;
+  border-bottom: 1px solid var(--rule-light);
+  cursor: pointer;
+  transition: background 0.15s;
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+}
+.eat-item:active { background: var(--cream); }
+.eat-item.eaten { background: rgba(26,22,18,0.02); }
+
+.eat-left {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 0;
+}
+.eat-emoji {
+  font-size: 30px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: filter 0.3s, transform 0.3s;
+}
+.eat-item.eaten .eat-emoji {
+  filter: grayscale(60%);
+  transform: scale(0.9);
+}
+
+.eat-info { flex: 1; min-width: 0; }
+.eat-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 2px;
+  transition: color 0.2s;
+}
+.eat-item.eaten .eat-name {
+  color: var(--ink-light);
+  text-decoration: line-through;
+  text-decoration-color: var(--ink-faint);
+}
+.eat-en {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.eat-desc {
+  font-size: 12px;
+  color: var(--ink-light);
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.eat-check-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.eat-price {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+/* 印章圆圈 */
+.eat-stamp { position: relative; }
+.stamp-circle {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  border: 2px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  transition: all 0.25s cubic-bezier(0.34,1.4,0.64,1);
+  background: transparent;
+}
+.stamp-icon {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink-faint);
+  line-height: 1;
+  transition: color 0.25s, transform 0.3s;
+}
+.stamp-txt {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  color: var(--ink-faint);
+  transition: color 0.25s;
+}
+
+/* 已打卡状态 */
+.eat-item.eaten .stamp-circle {
+  border-color: var(--ink);
+  background: var(--ink);
+  transform: rotate(-12deg) scale(1.05);
+  box-shadow: 0 2px 12px rgba(26,22,18,0.2);
+}
+.eat-item.eaten .stamp-icon {
+  color: var(--white);
+  transform: scale(1.1);
+}
+.eat-item.eaten .stamp-txt { color: rgba(250,248,245,0.75); }
+
+/* 完成时进度条变金色 */
+.eat-prog-bar-fill.all-done { background: var(--gold); }
+
+@media (prefers-color-scheme: light) {
+  :root { color-scheme: light; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     封面
+══════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- 屏一：主标题 -->
+  <div class="cover-screen s1">
+    <div class="cover-bg"></div>
+    <div class="cover-deco-text">THAILAND</div>
+    <div class="cover-top">
+      <div class="cover-tag">Thailand · 2026</div>
+      <div class="cover-date-tag">10.01 — 10.06</div>
+    </div>
+    <div class="cover-body">
+      <div class="cover-headline">不卷了<em>，</em><br>去泰国<em>。</em></div>
+      <div class="cover-rule"></div>
+      <div class="cover-sub">
+        攒了好久的假期<br>
+        终于在国庆，一起出发
+      </div>
+      <div class="cover-tagline">六个人 · 五个夜晚 · 一堆回忆</div>
+    </div>
+    <div class="cover-scroll-hint">↓ 继续看</div>
+  </div>
+
+  <!-- 屏二：泰兰德金句 -->
+  <div class="cover-screen s2">
+    <div class="s2-inner">
+      <div class="s2-label">Thailand · 2026</div>
+      <div class="s2-quote">
+        如果美好太难得，<br>
+        我们一起去<em>泰兰德</em>。
+      </div>
+      <div class="s2-rule"></div>
+      <div class="s2-members">
+        <span>Wang Qian</span><span>Zheng Yan</span><span>Xie Kang</span><span>Zhou Yang</span><span>Lin Lin</span><span>Xiong Siqi</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 屏三：高光时刻 -->
+  <div class="cover-screen s3">
+    <div class="s3-inner">
+      <div class="s3-question">
+        如果你问我，<br>这趟旅行最能让我们<br>在 5 年、10 年后<br>依然津津乐道的高光在哪里？
+      </div>
+      <div class="s3-highlights">
+        <div class="s3-hl-item">
+          <div class="s3-hl-icon">🪂</div>
+          <div class="s3-hl-text">大清早飞上云端<br><span>清迈三角翼</span></div>
+        </div>
+        <div class="s3-hl-item">
+          <div class="s3-hl-icon">💦</div>
+          <div class="s3-hl-text">手脚并用的湿身大笑<br><span>粘粘瀑布逆流而上</span></div>
+        </div>
+        <div class="s3-hl-item">
+          <div class="s3-hl-icon">🔥</div>
+          <div class="s3-hl-text">山谷营地里碰杯那晚<br><span>清迈星空之夜</span></div>
+        </div>
+      </div>
+      <div class="s3-footer">这些体验，全在<em>清迈</em>。</div>
+    </div>
+  </div>
+
+  <!-- 屏四：双城定位 -->
+  <div class="cover-screen s4">
+    <div class="s4-inner">
+      <div class="s4-city-label">BANGKOK</div>
+      <div class="s4-city-zh">曼谷</div>
+      <div class="s4-desc">
+        精致的设计酒店、创意老仓库、<br>爵士乐与特调鸡尾酒——<br>
+        <em>都市的夜，要这样过。</em>
+      </div>
+      <div class="s4-divider"></div>
+      <div class="s4-city-label" style="margin-top:0;">CHIANG MAI</div>
+      <div class="s4-city-zh">清迈</div>
+      <div class="s4-desc">
+        飞上云端、逆流瀑布、山谷星空——<br>
+        <em>把身体彻底交还给自然。</em>
+      </div>
+      <div class="s4-cta" onclick="document.querySelectorAll('.nav-item')[2].click()">
+        开始探索行程 →
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     行前清单
+══════════════════════════════════════ -->
+<div class="page" id="page-checklist">
+  <div class="page-header">
+    <div class="page-header-label">Pre-trip Checklist</div>
+    <div class="page-header-title">行前清单</div>
+    <div class="page-header-sub">出发前逐项确认，对齐6人信息</div>
+  </div>
+
+  <!-- 行程概览 -->
+  <div class="section">
+    <div class="section-label">Trip Overview</div>
+    <div class="stats-row">
+      <div class="stat-cell"><div class="stat-num">6</div><div class="stat-lbl">天数</div></div>
+      <div class="stat-cell"><div class="stat-num">6</div><div class="stat-lbl">成员</div></div>
+      <div class="stat-cell"><div class="stat-num">10/1</div><div class="stat-lbl">出发</div></div>
+      <div class="stat-cell"><div class="stat-num">10/6</div><div class="stat-lbl">返回</div></div>
+    </div>
+
+    <!-- 航班一：香港→廊曼 -->
+    <div class="flight-card" style="margin:16px 0 0;">
+      <div class="flight-row">
+        <div class="flight-city">HKG</div>
+        <div class="flight-arrow">— ✈ —</div>
+        <div class="flight-city">DMK</div>
+      </div>
+      <div class="flight-info">
+        <div class="flight-detail">
+          <div class="fl-label">航班</div>
+          <div class="fl-val">SL 365 · 泰狮航</div>
+        </div>
+        <div class="flight-detail">
+          <div class="fl-label">时间</div>
+          <div class="fl-val">20:20 → 22:05</div>
+        </div>
+        <div class="flight-detail">
+          <div class="fl-label">日期</div>
+          <div class="fl-val">10月1日</div>
+        </div>
+
+      </div>
+      <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(250,248,245,0.1);font-size:11px;color:rgba(250,248,245,0.4);letter-spacing:0.5px;">
+        香港T2 出发 · 廊曼T1 到达 · 直飞 1h 45m
+      </div>
+    </div>
+
+    <!-- 航班二：廊曼→清迈 -->
+    <div class="flight-card" style="margin:10px 0 0;">
+      <div class="flight-row">
+        <div class="flight-city">DMK</div>
+        <div class="flight-arrow">— ✈ —</div>
+        <div class="flight-city">CNX</div>
+      </div>
+      <div class="flight-info">
+        <div class="flight-detail">
+          <div class="fl-label">航班</div>
+          <div class="fl-val">DD 134 · Nok Air</div>
+        </div>
+        <div class="flight-detail">
+          <div class="fl-label">时间</div>
+          <div class="fl-val">16:50 → 18:10</div>
+        </div>
+        <div class="flight-detail">
+          <div class="fl-label">日期</div>
+          <div class="fl-val">10月3日</div>
+        </div>
+
+      </div>
+      <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(250,248,245,0.1);font-size:11px;color:rgba(250,248,245,0.4);letter-spacing:0.5px;">
+        廊曼 出发 · 清迈D 到达 · 直飞 1h 20m
+      </div>
+    </div>
+
+    <!-- 航班三：清迈→香港 -->
+    <div class="flight-card" style="margin:10px 0 0;">
+      <div class="flight-row">
+        <div class="flight-city">CNX</div>
+        <div class="flight-arrow">— ✈ —</div>
+        <div class="flight-city">HKG</div>
+      </div>
+      <div class="flight-info">
+        <div class="flight-detail">
+          <div class="fl-label">航班</div>
+          <div class="fl-val">UO 755 · 香港快运</div>
+        </div>
+        <div class="flight-detail">
+          <div class="fl-label">时间</div>
+          <div class="fl-val">19:25 → 23:15</div>
+        </div>
+        <div class="flight-detail">
+          <div class="fl-label">日期</div>
+          <div class="fl-val">10月6日</div>
+        </div>
+
+      </div>
+      <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(250,248,245,0.1);font-size:11px;color:rgba(250,248,245,0.4);letter-spacing:0.5px;">
+        清迈 出发 · 香港T1 到达 · 直飞 2h 50m
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 证件 -->
+  <div class="section">
+    <div class="section-label">Documents</div>
+    <div class="check-list">
+      <div class="check-row" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">护照（有效期 ≥ 6 个月）</div>
+        <div class="badge warn">必须</div>
+      </div>
+      <div class="check-row" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">港澳通行证 + 有效签注</div>
+        <div class="badge warn">必须</div>
+      </div>
+      <div class="check-row" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">机票行程单（截图或纸质）</div>
+        <div class="badge warn">必须</div>
+      </div>
+      <div class="check-row" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">旅游保险单</div>
+      </div>
+      <div class="check-row" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">酒店预订确认函</div>
+      </div>
+      <div class="check-row" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">境外银行卡 / 泰铢现金</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 必带物品 -->
+  <div class="section">
+    <div class="section-label">Essentials</div>
+    <div class="check-list">
+      <div class="check-row" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">防晒霜 SPF50+（泰国紫外线很强）</div>
+        <div class="badge warn">重要</div>
+      </div>
+      <div class="check-row" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">转换插头（泰国 A/B 型，220V）</div>
+      </div>
+      <div class="check-row" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">防蚊液 / 驱蚊贴</div>
+      </div>
+      <div class="check-row" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">轻薄长袖外套（室内冷气足）</div>
+      </div>
+      <div class="check-row" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">拖鞋（进庙需脱鞋）</div>
+      </div>
+      <div class="check-row" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">常用药（肠胃药、消炎药、创可贴）</div>
+      </div>
+      <div class="check-row" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">充电宝（≤ 20000mAh）</div>
+      </div>
+      <div class="check-row" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">泰国流量卡 / 开通境外套餐</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 提醒 -->
+  <div class="section" style="border-bottom:none;">
+    <div class="section-label">Reminders</div>
+    <div class="alert-block" style="margin:0;">
+      <p>
+        🕌 &nbsp;进佛寺需遮肩遮膝，入口可租纱笼<br>
+        🦶 &nbsp;脚不可指向人或佛像<br>
+        💸 &nbsp;Grab 打车比路边便宜且安全<br>
+        💧 &nbsp;不可直接喝自来水<br>
+        👑 &nbsp;禁止批评泰国王室（法律规定）
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     行程安排
+══════════════════════════════════════ -->
+<div class="page" id="page-itinerary">
+  <div class="page-header">
+    <div class="page-header-label">Itinerary</div>
+    <div class="page-header-title">行程安排</div>
+    <div class="page-header-sub">10月1日 — 10月6日 · 6天5夜</div>
+  </div>
+
+  <div class="day-scroll">
+    <div class="day-tab active" onclick="switchDay(0)">Day 1</div>
+    <div class="day-tab" onclick="switchDay(1)">Day 2</div>
+    <div class="day-tab" onclick="switchDay(2)">Day 3</div>
+    <div class="day-tab" onclick="switchDay(3)">Day 4</div>
+    <div class="day-tab" onclick="switchDay(4)">Day 5</div>
+    <div class="day-tab" onclick="switchDay(5)">Day 6</div>
+  </div>
+
+  <!-- Day 1 -->
+  <div class="day-panel active" id="day-0">
+    <div class="day-banner">
+      <div class="day-banner-label">Day 01 · Bangkok · 曼谷</div>
+      <div class="day-banner-title">深夜落地，高空微醺</div>
+      <div class="day-banner-date">10月1日（国庆） · 暹罗设计酒店</div>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">17:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title">✈️ 香港 T2 集合出发</div>
+          <div class="tl-note">提前 3 小时到机场，T2 值机柜台集合。</div>
+          <div class="tl-tip">💡 六人提前在线选座，尽量坐一起</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">20:20</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-flight">SL 365 · 泰国狮子航空</div>
+          <div class="tl-note">HKG T2 → DMK T1 &nbsp;｜&nbsp; 直飞约 1h 45m</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">22:05</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🛬 落地廊曼机场</div>
+          <div class="tl-note doc-voice">飞机穿过云层，曼谷的灯火在舷窗外铺开。热浪扑面，泰国的夜晚把你们接住了。</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">22:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-transport">🚕 打车前往酒店</div>
+          <div class="tl-note">Grab 打车 · 廊曼→暹罗区约 30 分钟 · 约 200 泰铢</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">23:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🏨 入住 Siam@Siam 暹罗设计酒店</div>
+          <div class="tl-note">曼谷最有腔调的设计师地标，每一处细节都在告诉你这趟旅行不一样。</div>
+          <div class="hotel-card">
+            <div class="hotel-name">Siam@Siam Design Hotel Bangkok</div>
+            <div class="hotel-addr">865 Rama I Rd, Wang Mai, Pathum Wan<br>Bangkok 10330, Thailand</div>
+            <div class="hotel-tags">
+              <span>BTS 国家体育场站 对面</span>
+              <span>Day 1 – 2 入住</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">00:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🍹 The Roof Top Bar · 高空第一杯</div>
+          <div class="tl-note doc-voice">电梯直上顶楼。曼谷的灯光在热带夜风里微微抖动，调酒师推来六杯特调。举杯，碰杯，旅行正式开始。</div>
+          <div class="tl-tip">✨ 别人还在倒时差，你们已经在曼谷夜景里碰杯</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="mood-row-wrap" id="mood-d0"><div class="mood6-wrap">
+      <div class="mood6-header">
+        <span class="mood6-title">Mood Check-in</span>
+        <span class="mood6-subtitle">旅途中各自打卡</span>
+      </div>
+      <div class="mood6-list">
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#1a1612">汪</div>
+          <div class="mood6-name">Wang Qian</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d0','Wang Qian',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d0','Wang Qian',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d0','Wang Qian',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d0','Wang Qian',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d0','Wang Qian',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#2D7A4F">郑</div>
+          <div class="mood6-name">Zheng Yan</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d0','Zheng Yan',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d0','Zheng Yan',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d0','Zheng Yan',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d0','Zheng Yan',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d0','Zheng Yan',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#5B3E8A">谢</div>
+          <div class="mood6-name">Xie Kang</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d0','Xie Kang',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d0','Xie Kang',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d0','Xie Kang',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d0','Xie Kang',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d0','Xie Kang',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#B85C1A">周</div>
+          <div class="mood6-name">Zhou Yang</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d0','Zhou Yang',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d0','Zhou Yang',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d0','Zhou Yang',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d0','Zhou Yang',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d0','Zhou Yang',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#1A5F8A">林</div>
+          <div class="mood6-name">Lin Lin</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d0','Lin Lin',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d0','Lin Lin',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d0','Lin Lin',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d0','Lin Lin',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d0','Lin Lin',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#8A1A5F">熊</div>
+          <div class="mood6-name">Xiong Siqi</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d0','Xiong Siqi',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d0','Xiong Siqi',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d0','Xiong Siqi',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d0','Xiong Siqi',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d0','Xiong Siqi',this)" data-emoji="hot">🥵</button></div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Day 2 -->
+  <div class="day-panel" id="day-1">
+    <div class="day-banner">
+      <div class="day-banner-label">Day 02 · Bangkok · 曼谷</div>
+      <div class="day-banner-title">创意淘货，落日夜市</div>
+      <div class="day-banner-date">10月2日 · Warehouse 30 → 郑王庙对岸 → 夜市海鲜 → 通罗区</div>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">10:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title">☕ 酒店 Brunch，悠闲出发</div>
+          <div class="tl-note">不赶早，曼谷上午十点的阳光才是正确的打开方式。</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">11:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-transport">🚇 BTS 前往石龙军路</div>
+          <div class="tl-note">BTS Silom 线 → Saphan Taksin 站 · 约 20 分钟 · 避开堵车</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">11:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🏭 Warehouse 30 · 创意老仓库</div>
+          <div class="tl-note doc-voice">二战时期红砖仓库群，住满了古着店、黑胶唱片铺和独立设计师买手店。那件不撞款的衬衫，正在某个角落等你。</div>
+          <div class="tl-tip">📍 Charoen Krung Rd · 无需门票</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">16:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-transport">🚕 Grab 打车到河对岸餐厅</div>
+          <div class="tl-note">提前预订 Rongros 或 The Deck 二楼天台位 · 务必选对岸可见郑王庙的座位</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">18:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🌅 郑王庙对岸天台 · 最佳机位</div>
+          <div class="tl-note doc-voice">傍晚 18 点，郑王庙白塔从顶端开始一层层亮起金光。当别人在庙里人挤人，你们在对岸举起酒杯，独占昭披耶河最好的视角。</div>
+          <div class="tl-tip">✨ 反向操作：别人庙里拥挤，你们对岸吃饭拍落日</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">19:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-transport">🚕 Grab 打车前往夜市</div>
+          <div class="tl-note">沿昭披耶河岸打车北行 · 约 15 分钟 · 前往曼谷夜市海鲜区</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">20:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🦀 夜市宵夜 · 海鲜大排档</div>
+          <div class="tl-note doc-voice">烟火气最重的那一段——虾、蟹、鱼、贝，全摆在碎冰上，灯光把海鲜照得晶亮。六个人围着大桌，自己点、自己烤、自己剥，手上沾着酱汁，啤酒一杯接一杯。<br><br>这一顿，是曼谷送给你们的告别晚宴。</div>
+          <div class="tl-tip">💡 推荐：Talad Rot Fai 火车夜市 / Asiatique 河畔夜市海鲜区 · 可现场砍价点海鲜</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">21:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-transport">🚕 Grab 打车去通罗区</div>
+          <div class="tl-note">约 20 分钟 · 约 100–150 泰铢</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">21:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🎷 The Iron Fairies · 魔幻铁匠铺</div>
+          <div class="tl-note doc-voice">维多利亚风格铁匠铺穿越到现代：铁链、蒸汽管道、昏黄灯光，空气里漂着威士忌气息，然后乐队开始演奏——全曼谷最好听的现场爵士。</div>
+          <div class="tl-tip">📍 Thonglor · 建议 21:00 后入场</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="mood-row-wrap" id="mood-d1"><div class="mood6-wrap">
+      <div class="mood6-header">
+        <span class="mood6-title">Mood Check-in</span>
+        <span class="mood6-subtitle">旅途中各自打卡</span>
+      </div>
+      <div class="mood6-list">
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#1a1612">汪</div>
+          <div class="mood6-name">Wang Qian</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d1','Wang Qian',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d1','Wang Qian',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d1','Wang Qian',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d1','Wang Qian',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d1','Wang Qian',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#2D7A4F">郑</div>
+          <div class="mood6-name">Zheng Yan</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d1','Zheng Yan',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d1','Zheng Yan',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d1','Zheng Yan',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d1','Zheng Yan',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d1','Zheng Yan',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#5B3E8A">谢</div>
+          <div class="mood6-name">Xie Kang</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d1','Xie Kang',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d1','Xie Kang',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d1','Xie Kang',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d1','Xie Kang',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d1','Xie Kang',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#B85C1A">周</div>
+          <div class="mood6-name">Zhou Yang</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d1','Zhou Yang',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d1','Zhou Yang',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d1','Zhou Yang',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d1','Zhou Yang',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d1','Zhou Yang',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#1A5F8A">林</div>
+          <div class="mood6-name">Lin Lin</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d1','Lin Lin',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d1','Lin Lin',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d1','Lin Lin',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d1','Lin Lin',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d1','Lin Lin',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#8A1A5F">熊</div>
+          <div class="mood6-name">Xiong Siqi</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d1','Xiong Siqi',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d1','Xiong Siqi',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d1','Xiong Siqi',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d1','Xiong Siqi',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d1','Xiong Siqi',this)" data-emoji="hot">🥵</button></div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Day 3 -->
+  <div class="day-panel" id="day-2">
+    <div class="day-banner">
+      <div class="day-banner-label">Day 03 · Bangkok → Chiang Mai</div>
+      <div class="day-banner-title">曼谷慢早晨，飞往清迈</div>
+      <div class="day-banner-date">10月3日 · 阿里区 Brunch → 清迈宁曼路</div>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">10:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title">☕ Ari 阿里区 · 曼谷最文艺的街区</div>
+          <div class="tl-note doc-voice">绿植蔓延的独栋咖啡馆，没有夜市喧嚣，没有游客拥挤，只有懒懒的上午阳光和一份认真做的 Brunch。</div>
+          <div class="tl-tip">📍 BTS Ari 站步行可达</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">13:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-transport">🚕 Grab 打车前往廊曼机场</div>
+          <div class="tl-note">Ari → 廊曼约 40–50 分钟 · 建议 13:00 出发 · 约 200–250 泰铢</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">14:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🛫 廊曼机场 T1 办理登机</div>
+          <div class="tl-note">Nok Air 值机柜台，建议提前 2 小时到达</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">16:50</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-flight">DD 134 · Nok Air 泰国皇雀</div>
+          <div class="tl-note">DMK → CNX &nbsp;｜&nbsp; 直飞约 1h 20m</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">18:10</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🛬 落地清迈机场</div>
+          <div class="tl-note doc-voice">飞机飞过泰国中部平原，城市消失，稻田和山丘接替出现。空气变得清凉，带着若有若无的花香——清迈到了。</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">18:20</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-transport">🚐 预订9座豪华保姆车接机</div>
+          <div class="tl-note">提前预订接机包车 · 机场→宁曼路酒店约 30 分钟 · 6人共乘更划算</div>
+          <div class="hotel-card">
+            <div class="hotel-name">清迈宁曼路酒店</div>
+            <div class="hotel-addr" style="color:var(--ink-faint);font-style:italic;">地址待补充 · 你可以把酒店名和地址发给我</div>
+            <div class="hotel-tags">
+              <span>Nimman 宁曼路区</span>
+              <span>Day 3 – 4 入住</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">19:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🏮 One Nimman · 宁曼一号夜市</div>
+          <div class="tl-note">露天原创设计集市，清迈本地独立品牌，慵懒的山城夜晚从这里开始。</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">21:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🍌 香蕉奶奶 Banana Roti · 清迈的甜蜜仪式</div>
+          <div class="tl-note doc-voice">铁板上的面饼烫得冒油，撒上炼奶、砂糖，折叠，切块。六个人站在路边，人手一份，烫嘴，甜，香。</div>
+          <div class="tl-tip">💡 排队人多可让保姆车带去古城边本地摊，味道一样</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="mood-row-wrap" id="mood-d2"><div class="mood6-wrap">
+      <div class="mood6-header">
+        <span class="mood6-title">Mood Check-in</span>
+        <span class="mood6-subtitle">旅途中各自打卡</span>
+      </div>
+      <div class="mood6-list">
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#1a1612">汪</div>
+          <div class="mood6-name">Wang Qian</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d2','Wang Qian',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d2','Wang Qian',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d2','Wang Qian',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d2','Wang Qian',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d2','Wang Qian',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#2D7A4F">郑</div>
+          <div class="mood6-name">Zheng Yan</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d2','Zheng Yan',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d2','Zheng Yan',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d2','Zheng Yan',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d2','Zheng Yan',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d2','Zheng Yan',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#5B3E8A">谢</div>
+          <div class="mood6-name">Xie Kang</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d2','Xie Kang',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d2','Xie Kang',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d2','Xie Kang',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d2','Xie Kang',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d2','Xie Kang',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#B85C1A">周</div>
+          <div class="mood6-name">Zhou Yang</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d2','Zhou Yang',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d2','Zhou Yang',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d2','Zhou Yang',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d2','Zhou Yang',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d2','Zhou Yang',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#1A5F8A">林</div>
+          <div class="mood6-name">Lin Lin</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d2','Lin Lin',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d2','Lin Lin',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d2','Lin Lin',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d2','Lin Lin',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d2','Lin Lin',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#8A1A5F">熊</div>
+          <div class="mood6-name">Xiong Siqi</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d2','Xiong Siqi',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d2','Xiong Siqi',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d2','Xiong Siqi',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d2','Xiong Siqi',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d2','Xiong Siqi',this)" data-emoji="hot">🥵</button></div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Day 4 -->
+  <div class="day-panel" id="day-3">
+    <div class="day-banner">
+      <div class="day-banner-label">Day 04 · Chiang Mai · 清迈</div>
+      <div class="day-banner-title">从天空到森林，极限满格</div>
+      <div class="day-banner-date">10月4日 · 三角翼 → 巨树咖啡 → 大象 → 瓦洛洛</div>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">05:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-transport">🚐 包车前往三角翼基地</div>
+          <div class="tl-note">保姆车包车出发 · 酒店→基地约 40 分钟 · 全天包车更方便</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">05:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🪂 Skyline 三角翼飞行 · 清迈最高处</div>
+          <div class="tl-note doc-voice">凌晨五点半，空气最稳，能见度最高。教练系好安全带，三角翼滑出跑道，脚下的地面迅速远去。清迈的日出在正前方——橙红色的光从山脊后漫出来，把整个盆地染成一块水彩画。</div>
+          <div class="tl-tip">⏰ 6人轮流飞，全程约 3 小时 · 必须早起</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">09:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-transport">🚐 包车前往巨树咖啡馆</div>
+          <div class="tl-note">保姆车开往山里 · 约 30 分钟山路</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">09:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🌳 The Giant Chiangmai · 百年古树咖啡馆</div>
+          <div class="tl-note doc-voice">一棵大得不像真实的古树，咖啡馆悬空建在树枝之间，吊桥连接。旅行团要到十一点才来，现在九点半，你们坐在树冠上喝着单品咖啡俯瞰山谷。</div>
+          <div class="tl-tip">✨ 旅行团未到，清晨古树只属于你们</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">12:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-transport">🚐 包车前往大象主题餐厅</div>
+          <div class="tl-note">约 20 分钟 · 保姆车全程候场</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">12:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🐘 大象主题餐厅 · 与巨兽共餐</div>
+          <div class="tl-note">吃午餐时窗外大象在山谷悠闲踱步，近距离投喂香蕉，感受那条有力鼻子的温柔。</div>
+          <div class="tl-tip">推荐 Elefin Farm & Cafe</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">14:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-transport">🚐 包车回市区</div>
+          <div class="tl-note">直接去 Fah Lanna Spa · 约 30 分钟</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">14:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🧖 Fah Lanna Spa · 泰式按摩</div>
+          <div class="tl-note">把早起飞行的疲惫一扫而空，约 2 小时</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">16:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-transport">🚕 打车去瓦洛洛市场</div>
+          <div class="tl-note">宁曼路→瓦洛洛约 15 分钟 · Grab</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">17:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🏮 瓦洛洛夜市 · 傍晚才是对的时间</div>
+          <div class="tl-note doc-voice">铺位打烊，摊贩把车推出来，路边夜市铺开。炸猪皮在油锅里噼啪作响，全是本地人在吃，用手指、用笑、用手机翻译，点所有看得顺眼的东西。</div>
+          <div class="tl-tip">✨ 17:00 后去 · 旅行团散场，本地夜市刚开始</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="mood-row-wrap" id="mood-d3"><div class="mood6-wrap">
+      <div class="mood6-header">
+        <span class="mood6-title">Mood Check-in</span>
+        <span class="mood6-subtitle">旅途中各自打卡</span>
+      </div>
+      <div class="mood6-list">
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#1a1612">汪</div>
+          <div class="mood6-name">Wang Qian</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d3','Wang Qian',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d3','Wang Qian',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d3','Wang Qian',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d3','Wang Qian',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d3','Wang Qian',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#2D7A4F">郑</div>
+          <div class="mood6-name">Zheng Yan</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d3','Zheng Yan',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d3','Zheng Yan',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d3','Zheng Yan',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d3','Zheng Yan',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d3','Zheng Yan',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#5B3E8A">谢</div>
+          <div class="mood6-name">Xie Kang</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d3','Xie Kang',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d3','Xie Kang',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d3','Xie Kang',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d3','Xie Kang',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d3','Xie Kang',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#B85C1A">周</div>
+          <div class="mood6-name">Zhou Yang</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d3','Zhou Yang',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d3','Zhou Yang',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d3','Zhou Yang',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d3','Zhou Yang',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d3','Zhou Yang',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#1A5F8A">林</div>
+          <div class="mood6-name">Lin Lin</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d3','Lin Lin',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d3','Lin Lin',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d3','Lin Lin',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d3','Lin Lin',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d3','Lin Lin',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#8A1A5F">熊</div>
+          <div class="mood6-name">Xiong Siqi</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d3','Xiong Siqi',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d3','Xiong Siqi',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d3','Xiong Siqi',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d3','Xiong Siqi',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d3','Xiong Siqi',this)" data-emoji="hot">🥵</button></div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Day 5 -->
+  <div class="day-panel" id="day-4">
+    <div class="day-banner">
+      <div class="day-banner-label">Day 05 · Chiang Mai · 清迈</div>
+      <div class="day-banner-title">搬进山谷，只属于你们的夜晚</div>
+      <div class="day-banner-date">10月5日 · 艺术村 → 湄林山谷丛林民宿</div>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">10:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-transport">🚕 打车前往 Baan Kang Wat</div>
+          <div class="tl-note">宁曼路出发 · 约 10 分钟 · Grab</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">10:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🏡 Baan Kang Wat · 森林里的艺术村</div>
+          <div class="tl-note doc-voice">森林木屋群落，安静、绿意、充满手工温度。清晨光线从树冠筛下来，落在陶器上、织物上。周日夜市人挤人，这里安静清幽完全不排队。</div>
+          <div class="tl-tip">✨ 反向操作：避开人群，享受清迈另一种温柔</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">13:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🍜 市区午餐</div>
+          <div class="tl-note">附近觅食，下午出发前补能量</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">14:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-transport">🚐 包车前往湄林 / 湄登山谷</div>
+          <div class="tl-note">保姆车载行李出发，沿山路向北 · 约 1–1.5 小时 · 全程包车</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">16:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🏕️ 入住班莱汀生态小屋</div>
+          <div class="tl-note doc-voice">树屋、竹屋，或停在山谷里的房车——你们今晚的家，是整片森林。空气湿润，带着腐叶和泥土气息，偶尔有鸟从车窗外掠过。</div>
+          <div class="hotel-card">
+            <div class="hotel-name">班莱汀泰式加姆生态小屋</div>
+            <div class="hotel-addr">Ban Rai Tin Thai Ngarm Eco Lodge<br>113/4 Moo 5, Tambon Mae Ram, Mae Rim<br>Chiang Mai 50180, Thailand</div>
+            <div class="hotel-tags">
+              <span>Mae Rim 湄林区</span>
+              <span>距粘粘瀑布约 15 分钟</span>
+              <span>Day 5 – 6 入住</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">19:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🔥 泰式烧烤 Mookata · 老友之夜</div>
+          <div class="tl-note doc-voice">木炭在铁锅中心烧得通红，虫鸣从四面山林涌进来，手里的冰啤酒结着水珠。没有游客，没有行程表——只有你们六个人，在泰国的山里，把这一夜烤得焦香。这就是为什么要来旅行。</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="mood-row-wrap" id="mood-d4"><div class="mood6-wrap">
+      <div class="mood6-header">
+        <span class="mood6-title">Mood Check-in</span>
+        <span class="mood6-subtitle">旅途中各自打卡</span>
+      </div>
+      <div class="mood6-list">
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#1a1612">汪</div>
+          <div class="mood6-name">Wang Qian</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d4','Wang Qian',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d4','Wang Qian',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d4','Wang Qian',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d4','Wang Qian',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d4','Wang Qian',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#2D7A4F">郑</div>
+          <div class="mood6-name">Zheng Yan</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d4','Zheng Yan',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d4','Zheng Yan',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d4','Zheng Yan',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d4','Zheng Yan',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d4','Zheng Yan',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#5B3E8A">谢</div>
+          <div class="mood6-name">Xie Kang</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d4','Xie Kang',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d4','Xie Kang',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d4','Xie Kang',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d4','Xie Kang',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d4','Xie Kang',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#B85C1A">周</div>
+          <div class="mood6-name">Zhou Yang</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d4','Zhou Yang',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d4','Zhou Yang',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d4','Zhou Yang',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d4','Zhou Yang',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d4','Zhou Yang',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#1A5F8A">林</div>
+          <div class="mood6-name">Lin Lin</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d4','Lin Lin',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d4','Lin Lin',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d4','Lin Lin',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d4','Lin Lin',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d4','Lin Lin',this)" data-emoji="hot">🥵</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#8A1A5F">熊</div>
+          <div class="mood6-name">Xiong Siqi</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d4','Xiong Siqi',this)" data-emoji="wow">🤩</button><button class="mood6-btn" onclick="pick6('d4','Xiong Siqi',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d4','Xiong Siqi',this)" data-emoji="ok">😊</button><button class="mood6-btn" onclick="pick6('d4','Xiong Siqi',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d4','Xiong Siqi',this)" data-emoji="hot">🥵</button></div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Day 6 -->
+  <div class="day-panel" id="day-5">
+    <div class="day-banner">
+      <div class="day-banner-label">Day 06 · Chiang Mai → Hong Kong · 返程</div>
+      <div class="day-banner-title">逆流而上，完美收尾</div>
+      <div class="day-banner-date">10月6日 · 粘粘瀑布 → 按摩 → 19:25 飞回</div>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">08:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-transport">🚐 包车前往粘粘瀑布</div>
+          <div class="tl-note">民宿→粘粘瀑布仅约 15 分钟 · 住在附近是最大优势</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">09:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title">💦 粘粘瀑布 Bua Tong · 最后的狂野</div>
+          <div class="tl-note doc-voice">九点整园区刚开门，从市区出发的旅行团大巴还在高速堵着——整条瀑布几乎只有你们六个人。石灰岩地貌绝不生青苔，踩着清凉瀑布一路逆流往上爬，滑倒，互相拉一把，站在最高水池举起手。</div>
+          <div class="tl-tip">✨ 终极反向：住附近开园第一批入 · 旅行团晚两小时才到</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">12:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-transport">🚐 包车回清迈市区</div>
+          <div class="tl-note">约 1 小时 · 途中可在山谷找地方吃午餐</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">13:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🍜 最后一顿泰国饭，慢慢吃</div>
+          <div class="tl-note">回味这六天，吃得慢一点。</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">15:30</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🦶 Fah Lanna Spa · 最后一次按摩</div>
+          <div class="tl-note doc-voice">一个小时，把六天积攒的疲惫从脚底推散。闭上眼睛，倒带这六天——顶楼碰杯、仓库古着、河对岸金光、树冠里的咖啡、天空中的日出、瀑布里的逆流……全部收好，装进行李箱带回去。</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">17:00</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-transport">🚕 打车前往清迈机场</div>
+          <div class="tl-note">市区→清迈机场约 15–20 分钟 · Grab 或包车</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">17:15</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🛫 清迈机场 · 办理登机</div>
+          <div class="tl-note">HK Express 值机 · 建议 17:15 前到达</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">19:25</div></div>
+        <div class="tl-right">
+          <div class="tl-title tl-flight">UO 755 · 香港快运 HK Express</div>
+          <div class="tl-note">CNX → HKG T1 &nbsp;｜&nbsp; 直飞约 2h 50m</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">23:15</div></div>
+        <div class="tl-right">
+          <div class="tl-title">🏠 落地香港 T1 · 完美收尾</div>
+          <div class="tl-note doc-voice">六个人靠着椅背，各自滑着手机里刚拍的照片，偶尔伸过头来——"你看这张""这个表情太搞笑了"。旅行结束了，但那种感觉会留很久。</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="mood-row-wrap" id="mood-d5"><div class="mood6-wrap">
+      <div class="mood6-header">
+        <span class="mood6-title">Mood Check-in</span>
+        <span class="mood6-subtitle">旅途中各自打卡</span>
+      </div>
+      <div class="mood6-list">
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#1a1612">汪</div>
+          <div class="mood6-name">Wang Qian</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d5','Wang Qian',this)" data-emoji="sad">😢</button><button class="mood6-btn" onclick="pick6('d5','Wang Qian',this)" data-emoji="moved">🥹</button><button class="mood6-btn" onclick="pick6('d5','Wang Qian',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d5','Wang Qian',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d5','Wang Qian',this)" data-emoji="wow">🤩</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#2D7A4F">郑</div>
+          <div class="mood6-name">Zheng Yan</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d5','Zheng Yan',this)" data-emoji="sad">😢</button><button class="mood6-btn" onclick="pick6('d5','Zheng Yan',this)" data-emoji="moved">🥹</button><button class="mood6-btn" onclick="pick6('d5','Zheng Yan',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d5','Zheng Yan',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d5','Zheng Yan',this)" data-emoji="wow">🤩</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#5B3E8A">谢</div>
+          <div class="mood6-name">Xie Kang</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d5','Xie Kang',this)" data-emoji="sad">😢</button><button class="mood6-btn" onclick="pick6('d5','Xie Kang',this)" data-emoji="moved">🥹</button><button class="mood6-btn" onclick="pick6('d5','Xie Kang',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d5','Xie Kang',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d5','Xie Kang',this)" data-emoji="wow">🤩</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#B85C1A">周</div>
+          <div class="mood6-name">Zhou Yang</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d5','Zhou Yang',this)" data-emoji="sad">😢</button><button class="mood6-btn" onclick="pick6('d5','Zhou Yang',this)" data-emoji="moved">🥹</button><button class="mood6-btn" onclick="pick6('d5','Zhou Yang',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d5','Zhou Yang',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d5','Zhou Yang',this)" data-emoji="wow">🤩</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#1A5F8A">林</div>
+          <div class="mood6-name">Lin Lin</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d5','Lin Lin',this)" data-emoji="sad">😢</button><button class="mood6-btn" onclick="pick6('d5','Lin Lin',this)" data-emoji="moved">🥹</button><button class="mood6-btn" onclick="pick6('d5','Lin Lin',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d5','Lin Lin',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d5','Lin Lin',this)" data-emoji="wow">🤩</button></div>
+        </div>
+        <div class="mood6-row">
+          <div class="mood6-av" style="background:#8A1A5F">熊</div>
+          <div class="mood6-name">Xiong Siqi</div>
+          <div class="mood6-emojis"><button class="mood6-btn" onclick="pick6('d5','Xiong Siqi',this)" data-emoji="sad">😢</button><button class="mood6-btn" onclick="pick6('d5','Xiong Siqi',this)" data-emoji="moved">🥹</button><button class="mood6-btn" onclick="pick6('d5','Xiong Siqi',this)" data-emoji="happy">😄</button><button class="mood6-btn" onclick="pick6('d5','Xiong Siqi',this)" data-emoji="tired">😴</button><button class="mood6-btn" onclick="pick6('d5','Xiong Siqi',this)" data-emoji="wow">🤩</button></div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     攻略
+══════════════════════════════════════ -->
+<div class="page" id="page-guide">
+  <div class="page-header">
+    <div class="page-header-label">Travel Guide</div>
+    <div class="page-header-title">吃喝玩乐</div>
+    <div class="page-header-sub">泰国旅行攻略精华版</div>
+  </div>
+
+  <div class="guide-tabs-row">
+    <div class="guide-tab-btn active" onclick="switchGuide(0)">必吃</div>
+    <div class="guide-tab-btn" onclick="switchGuide(1)">必买</div>
+    <div class="guide-tab-btn" onclick="switchGuide(2)">禁忌</div>
+  </div>
+
+  <!-- 必吃打卡 -->
+  <div class="guide-panel active" id="g-0">
+
+    <!-- 进度条 -->
+    <div class="eat-progress-wrap">
+      <div class="eat-progress-top">
+        <span class="eat-prog-label">打卡进度</span>
+        <span class="eat-prog-count"><span id="eat-done">0</span> / 8 道</span>
+      </div>
+      <div class="eat-prog-bar-bg">
+        <div class="eat-prog-bar-fill" id="eat-bar" style="width:0%"></div>
+      </div>
+      <div class="eat-prog-hint" id="eat-hint">出发前先看看，在泰国逐一解锁 🍴</div>
+    </div>
+
+    <!-- 打卡列表 -->
+    <div class="eat-list">
+
+      <div class="eat-item" data-id="eat-0" onclick="toggleEat(this)">
+        <div class="eat-left">
+          <div class="eat-emoji">🍜</div>
+          <div class="eat-info">
+            <div class="eat-name">泰式炒河粉</div>
+            <div class="eat-en">Pad Thai</div>
+            <div class="eat-desc">花生碎、豆芽、鲜柠檬，街头随处可见</div>
+          </div>
+        </div>
+        <div class="eat-check-wrap">
+          <div class="eat-price">¥15–30</div>
+          <div class="eat-stamp">
+            <div class="stamp-circle">
+              <span class="stamp-icon">✓</span>
+              <span class="stamp-txt">吃了</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eat-item" data-id="eat-1" onclick="toggleEat(this)">
+        <div class="eat-left">
+          <div class="eat-emoji">🍲</div>
+          <div class="eat-info">
+            <div class="eat-name">冬阴功汤</div>
+            <div class="eat-en">Tom Yum Goong</div>
+            <div class="eat-desc">酸辣鲜虾，香茅柠檬叶，暖胃又过瘾</div>
+          </div>
+        </div>
+        <div class="eat-check-wrap">
+          <div class="eat-price">¥40–80</div>
+          <div class="eat-stamp">
+            <div class="stamp-circle">
+              <span class="stamp-icon">✓</span>
+              <span class="stamp-txt">吃了</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eat-item" data-id="eat-2" onclick="toggleEat(this)">
+        <div class="eat-left">
+          <div class="eat-emoji">🥭</div>
+          <div class="eat-info">
+            <div class="eat-name">芒果糯米饭</div>
+            <div class="eat-en">Mango Sticky Rice</div>
+            <div class="eat-desc">新鲜芒果 + 椰浆糯米，甜蜜之王</div>
+          </div>
+        </div>
+        <div class="eat-check-wrap">
+          <div class="eat-price">¥15–25</div>
+          <div class="eat-stamp">
+            <div class="stamp-circle">
+              <span class="stamp-icon">✓</span>
+              <span class="stamp-txt">吃了</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eat-item" data-id="eat-3" onclick="toggleEat(this)">
+        <div class="eat-left">
+          <div class="eat-emoji">🧋</div>
+          <div class="eat-info">
+            <div class="eat-name">泰式奶茶</div>
+            <div class="eat-en">Thai Milk Tea</div>
+            <div class="eat-desc">橙红色红茶加炼乳，甜而醇厚</div>
+          </div>
+        </div>
+        <div class="eat-check-wrap">
+          <div class="eat-price">¥10–20</div>
+          <div class="eat-stamp">
+            <div class="stamp-circle">
+              <span class="stamp-icon">✓</span>
+              <span class="stamp-txt">喝了</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eat-item" data-id="eat-4" onclick="toggleEat(this)">
+        <div class="eat-left">
+          <div class="eat-emoji">🍛</div>
+          <div class="eat-info">
+            <div class="eat-name">绿咖喱鸡</div>
+            <div class="eat-en">Green Curry Chicken</div>
+            <div class="eat-desc">浓郁椰香，搭配泰国香米，层次丰富</div>
+          </div>
+        </div>
+        <div class="eat-check-wrap">
+          <div class="eat-price">¥40–70</div>
+          <div class="eat-stamp">
+            <div class="stamp-circle">
+              <span class="stamp-icon">✓</span>
+              <span class="stamp-txt">吃了</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eat-item" data-id="eat-5" onclick="toggleEat(this)">
+        <div class="eat-left">
+          <div class="eat-emoji">🦀</div>
+          <div class="eat-info">
+            <div class="eat-name">咖喱炒蟹</div>
+            <div class="eat-en">Crab Curry</div>
+            <div class="eat-desc">曼谷必吃海鲜，河畔餐厅最佳</div>
+          </div>
+        </div>
+        <div class="eat-check-wrap">
+          <div class="eat-price">市价</div>
+          <div class="eat-stamp">
+            <div class="stamp-circle">
+              <span class="stamp-icon">✓</span>
+              <span class="stamp-txt">吃了</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eat-item" data-id="eat-6" onclick="toggleEat(this)">
+        <div class="eat-left">
+          <div class="eat-emoji">🥩</div>
+          <div class="eat-info">
+            <div class="eat-name">猪颈肉烤串</div>
+            <div class="eat-en">Grilled Pork Neck</div>
+            <div class="eat-desc">夜市烟火气必吃，配糯米饭绝了</div>
+          </div>
+        </div>
+        <div class="eat-check-wrap">
+          <div class="eat-price">¥20–40</div>
+          <div class="eat-stamp">
+            <div class="stamp-circle">
+              <span class="stamp-icon">✓</span>
+              <span class="stamp-txt">吃了</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eat-item" data-id="eat-7" onclick="toggleEat(this)" style="border-bottom:none;">
+        <div class="eat-left">
+          <div class="eat-emoji">🍹</div>
+          <div class="eat-info">
+            <div class="eat-name">新鲜椰子水</div>
+            <div class="eat-en">Fresh Coconut</div>
+            <div class="eat-desc">直接插吸管，解暑一口到位</div>
+          </div>
+        </div>
+        <div class="eat-check-wrap">
+          <div class="eat-price">¥8–15</div>
+          <div class="eat-stamp">
+            <div class="stamp-circle">
+              <span class="stamp-icon">✓</span>
+              <span class="stamp-txt">喝了</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /eat-list -->
+
+    <div style="padding:16px 28px 20px;">
+      <div class="alert-block" style="margin:0;">
+        <p>💡 遇辣度选择先点「不辣」，泰国辣是真的辣 🌶️</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 必买 -->
+  <div class="guide-panel" id="g-1">
+
+    <!-- 进度条 -->
+    <div class="eat-progress-wrap">
+      <div class="eat-progress-top">
+        <span class="eat-prog-label">购物进度</span>
+        <span class="eat-prog-count"><span id="buy-done">0</span> / 6 件</span>
+      </div>
+      <div class="eat-prog-bar-bg">
+        <div class="eat-prog-bar-fill" id="buy-bar" style="width:0%"></div>
+      </div>
+      <div class="eat-prog-hint" id="buy-hint">买到就打卡，行李塞满才算赢 🛍️</div>
+    </div>
+
+    <div class="eat-list">
+
+      <div class="eat-item" data-id="buy-0" onclick="toggleBuy(this)">
+        <div class="eat-left">
+          <div class="eat-emoji">🐘</div>
+          <div class="eat-info">
+            <div class="eat-name">象牌药膏</div>
+            <div class="eat-en">Tiger Balm</div>
+            <div class="eat-desc">万金油，必扫伴手礼，约 20–30 泰铢/支</div>
+          </div>
+        </div>
+        <div class="eat-check-wrap">
+          <div class="eat-stamp">
+            <div class="stamp-circle">
+              <span class="stamp-icon">✓</span>
+              <span class="stamp-txt">买了</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eat-item" data-id="buy-1" onclick="toggleBuy(this)">
+        <div class="eat-left">
+          <div class="eat-emoji">🌸</div>
+          <div class="eat-info">
+            <div class="eat-name">茉莉花皂</div>
+            <div class="eat-en">Jasmine Soap</div>
+            <div class="eat-desc">天然植物，手感细腻，送人自用两相宜</div>
+          </div>
+        </div>
+        <div class="eat-check-wrap">
+          <div class="eat-stamp">
+            <div class="stamp-circle">
+              <span class="stamp-icon">✓</span>
+              <span class="stamp-txt">买了</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eat-item" data-id="buy-2" onclick="toggleBuy(this)">
+        <div class="eat-left">
+          <div class="eat-emoji">🥭</div>
+          <div class="eat-info">
+            <div class="eat-name">芒果干 / 椰子糖</div>
+            <div class="eat-en">Dried Mango</div>
+            <div class="eat-desc">Big C / Lotus 超市买最划算，是国内 1/3 价</div>
+          </div>
+        </div>
+        <div class="eat-check-wrap">
+          <div class="eat-stamp">
+            <div class="stamp-circle">
+              <span class="stamp-icon">✓</span>
+              <span class="stamp-txt">买了</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eat-item" data-id="buy-3" onclick="toggleBuy(this)">
+        <div class="eat-left">
+          <div class="eat-emoji">👜</div>
+          <div class="eat-info">
+            <div class="eat-name">NARAYA 曼谷包</div>
+            <div class="eat-en">Naraya Bag</div>
+            <div class="eat-desc">轻便布料，颜色多样，实用又有纪念感</div>
+          </div>
+        </div>
+        <div class="eat-check-wrap">
+          <div class="eat-stamp">
+            <div class="stamp-circle">
+              <span class="stamp-icon">✓</span>
+              <span class="stamp-txt">买了</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eat-item" data-id="buy-4" onclick="toggleBuy(this)">
+        <div class="eat-left">
+          <div class="eat-emoji">🧴</div>
+          <div class="eat-info">
+            <div class="eat-name">Mistine 防晒</div>
+            <div class="eat-en">Mistine SPF 50</div>
+            <div class="eat-desc">本地平价神器，是国内价格的 1/3</div>
+          </div>
+        </div>
+        <div class="eat-check-wrap">
+          <div class="eat-stamp">
+            <div class="stamp-circle">
+              <span class="stamp-icon">✓</span>
+              <span class="stamp-txt">买了</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eat-item" data-id="buy-5" onclick="toggleBuy(this)" style="border-bottom:none;">
+        <div class="eat-left">
+          <div class="eat-emoji">🐌</div>
+          <div class="eat-info">
+            <div class="eat-name">蜗牛霜 / 草本护肤</div>
+            <div class="eat-en">Snail White</div>
+            <div class="eat-desc">Chatuchak 周末市场品类最全，货比三家</div>
+          </div>
+        </div>
+        <div class="eat-check-wrap">
+          <div class="eat-stamp">
+            <div class="stamp-circle">
+              <span class="stamp-icon">✓</span>
+              <span class="stamp-txt">买了</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="padding:16px 28px 20px;">
+      <div class="alert-block" style="margin:0;">
+        <p>💡 汇率参考：1 CNY ≈ 4.8 THB，出发前查最新</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 禁忌 -->
+  <div class="guide-panel" id="g-2">
+    <div class="tip-list">
+      <div class="tip-item">
+        <div class="tip-icon-box">🙏</div>
+        <div class="tip-body">
+          <div class="tip-name">进寺着装</div>
+          <div class="tip-desc">进佛寺须遮住肩膀和膝盖，入口处通常可租借纱笼</div>
+        </div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-icon-box">🦶</div>
+        <div class="tip-body">
+          <div class="tip-name">脚的禁忌</div>
+          <div class="tip-desc">脚被视为不洁，不能用脚指向人、佛像或任何神圣之物</div>
+        </div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-icon-box">✋</div>
+        <div class="tip-body">
+          <div class="tip-name">头部禁摸</div>
+          <div class="tip-desc">头部被认为是圣洁的，切勿随意触摸他人头顶，包括小孩</div>
+        </div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-icon-box">👑</div>
+        <div class="tip-body">
+          <div class="tip-name">尊重王室</div>
+          <div class="tip-desc">批评泰国王室是刑事犯罪，绝对避免相关言论</div>
+        </div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-icon-box">💵</div>
+        <div class="tip-body">
+          <div class="tip-name">小费文化</div>
+          <div class="tip-desc">餐厅、按摩、酒店服务通常需要给 20–100 泰铢小费</div>
+        </div>
+      </div>
+      <div class="tip-item" style="border-bottom:none;">
+        <div class="tip-icon-box">🚕</div>
+        <div class="tip-body">
+          <div class="tip-name">打车安全</div>
+          <div class="tip-desc">优先使用 Grab App，安全价透明，避免路边随机议价</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     费用
+══════════════════════════════════════ -->
+<div class="page" id="page-expense">
+  <div class="page-header">
+    <div class="page-header-label">Trip Expenses</div>
+    <div class="page-header-title">费用记录</div>
+    <div class="page-header-sub">旅途中记录，回来算清楚 AA</div>
+  </div>
+
+  <div class="expense-top">
+    <div class="expense-big-label">Total Spent</div>
+    <div class="expense-big-num" id="total-num">¥ 0</div>
+    <div class="expense-per-line">人均 <span id="per-num">¥ 0</span>（6人平摊）</div>
+  </div>
+
+  <div class="expense-cats-row">
+    <div class="expense-cat-cell">
+      <div class="ecat-icon">🍽️</div>
+      <div class="ecat-num" id="ct-food">¥0</div>
+      <div class="ecat-name">餐饮</div>
+    </div>
+    <div class="expense-cat-cell">
+      <div class="ecat-icon">🚌</div>
+      <div class="ecat-num" id="ct-transport">¥0</div>
+      <div class="ecat-name">交通</div>
+    </div>
+    <div class="expense-cat-cell">
+      <div class="ecat-icon">🎟️</div>
+      <div class="ecat-num" id="ct-ticket">¥0</div>
+      <div class="ecat-name">景点</div>
+    </div>
+    <div class="expense-cat-cell">
+      <div class="ecat-icon">🛍️</div>
+      <div class="ecat-num" id="ct-shop">¥0</div>
+      <div class="ecat-name">购物</div>
+    </div>
+  </div>
+
+  <button class="add-btn" onclick="openModal()">+ 记一笔</button>
+
+  <div class="expense-list" id="expense-list">
+    <div class="empty" style="padding:40px 0;">
+      <div class="empty-label">No Records</div>
+      <div class="empty-title">还没有记录</div>
+      <div class="empty-sub">旅途中点击上方按钮添加消费</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     地图打卡
+══════════════════════════════════════ -->
+<div class="page" id="page-memory">
+  <div class="page-header">
+    <div class="page-header-label">Map Check-in</div>
+    <div class="page-header-title">足迹地图</div>
+    <div class="page-header-sub">点亮我们走过的地方</div>
+  </div>
+
+  <!-- 打卡进度 -->
+  <div class="map-progress-bar">
+    <div class="map-prog-inner">
+      <span class="map-prog-txt">已点亮 <span id="map-lit">0</span> / 9 个地点</span>
+      <div class="map-prog-bg"><div class="map-prog-fill" id="map-bar" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <!-- 泰国 SVG 地图 -->
+  <div class="map-wrap">
+    <svg id="thailand-map" viewBox="0 0 320 580" xmlns="http://www.w3.org/2000/svg">
+      <!-- 泰国国土轮廓（简化路径） -->
+      <path class="th-land" d="
+        M148,18 L158,14 L170,18 L178,26 L182,38 L178,52 L185,62 L190,78
+        L195,90 L200,102 L205,116 L208,130 L210,144 L208,158 L212,170
+        L218,182 L222,196 L220,210 L215,222 L210,234 L206,246 L200,256
+        L194,266 L188,278 L182,288 L178,300 L175,310 L170,320
+        L165,328 L160,338 L158,348 L162,356 L168,364 L172,374
+        L170,384 L165,392 L160,402 L158,412 L160,422 L163,432
+        L161,442 L156,450 L152,460 L150,470 L152,480 L156,488
+        L154,496 L150,502 L146,496 L142,488 L140,478 L138,468
+        L136,458 L134,448 L132,438 L130,428 L128,418 L130,408
+        L135,400 L140,392 L144,382 L142,372 L138,362 L136,352
+        L138,342 L142,332 L144,322 L140,312 L135,302 L130,292
+        L124,282 L118,272 L112,262 L108,250 L106,238 L108,226
+        L112,214 L116,202 L118,190 L116,178 L112,166 L110,154
+        L108,142 L110,128 L114,116 L118,104 L122,92 L126,80
+        L128,68 L132,56 L136,44 L140,32 L144,22 Z
+      "/>
+      <!-- 海湾区域 -->
+      <path class="th-land" d="
+        M162,356 L170,350 L178,344 L186,340 L194,338 L200,342
+        L204,350 L206,360 L202,368 L196,374 L190,378 L184,374
+        L178,368 L172,364 L168,358 Z
+      " opacity="0.6"/>
+
+      <!-- ── 城市打卡点 ── -->
+
+      <!-- 粘粘瀑布 Bua Tong → 左上方标签 -->
+      <g class="map-pin" id="pin-buatong" onclick="togglePin('buatong')">
+        <circle class="pin-ring" cx="112" cy="72" r="12"/>
+        <circle class="pin-dot" cx="112" cy="72" r="5"/>
+        <line x1="100" y1="67" x2="60" y2="52" stroke="rgba(26,22,18,0.15)" stroke-width="0.8"/>
+        <text class="pin-label" text-anchor="end" x="58" y="48">粘粘瀑布</text>
+        <text class="pin-label-en" text-anchor="end" x="58" y="57">Bua Tong</text>
+      </g>
+
+      <!-- 湄登山谷 Mae Taeng → 右侧标签 -->
+      <g class="map-pin" id="pin-maetaeng" onclick="togglePin('maetaeng')">
+        <circle class="pin-ring" cx="122" cy="94" r="12"/>
+        <circle class="pin-dot" cx="122" cy="94" r="5"/>
+        <line x1="134" y1="94" x2="162" y2="94" stroke="rgba(26,22,18,0.15)" stroke-width="0.8"/>
+        <text class="pin-label" text-anchor="start" x="164" y="91">湄登山谷</text>
+        <text class="pin-label-en" text-anchor="start" x="164" y="100">Mae Taeng</text>
+      </g>
+
+      <!-- 清迈机场 CNX → 右侧标签 -->
+      <g class="map-pin" id="pin-cnxairport" onclick="togglePin('cnxairport')">
+        <circle class="pin-ring" cx="132" cy="118" r="11"/>
+        <circle class="pin-dot" cx="132" cy="118" r="5"/>
+        <line x1="143" y1="118" x2="162" y2="118" stroke="rgba(26,22,18,0.15)" stroke-width="0.8"/>
+        <text class="pin-label" text-anchor="start" x="164" y="115">清迈机场</text>
+        <text class="pin-label-en" text-anchor="start" x="164" y="124">CNX Airport</text>
+      </g>
+
+      <!-- 清迈 Chiang Mai → 左侧标签（大圆，主城市） -->
+      <g class="map-pin" id="pin-chiangmai" onclick="togglePin('chiangmai')">
+        <circle class="pin-ring" cx="140" cy="140" r="16"/>
+        <circle class="pin-dot" cx="140" cy="140" r="7"/>
+        <line x1="124" y1="140" x2="94" y2="140" stroke="rgba(26,22,18,0.15)" stroke-width="0.8"/>
+        <text class="pin-label" text-anchor="end" x="92" y="137">清迈</text>
+        <text class="pin-label-en" text-anchor="end" x="92" y="146">Chiang Mai</text>
+      </g>
+
+      <!-- 廊曼机场 Don Mueang → 右上标签 -->
+      <g class="map-pin" id="pin-donmueang" onclick="togglePin('donmueang')">
+        <circle class="pin-ring" cx="196" cy="248" r="11"/>
+        <circle class="pin-dot" cx="196" cy="248" r="5"/>
+        <line x1="207" y1="243" x2="230" y2="230" stroke="rgba(26,22,18,0.15)" stroke-width="0.8"/>
+        <text class="pin-label" text-anchor="start" x="232" y="227">廊曼机场</text>
+        <text class="pin-label-en" text-anchor="start" x="232" y="236">Don Mueang</text>
+      </g>
+
+      <!-- 通罗区 Thonglor → 右侧标签 -->
+      <g class="map-pin" id="pin-thonglor" onclick="togglePin('thonglor')">
+        <circle class="pin-ring" cx="204" cy="268" r="11"/>
+        <circle class="pin-dot" cx="204" cy="268" r="5"/>
+        <line x1="215" y1="268" x2="236" y2="268" stroke="rgba(26,22,18,0.15)" stroke-width="0.8"/>
+        <text class="pin-label" text-anchor="start" x="238" y="265">通罗区</text>
+        <text class="pin-label-en" text-anchor="start" x="238" y="274">Thonglor</text>
+      </g>
+
+      <!-- 曼谷 Bangkok → 左侧大标签（主城市） -->
+      <g class="map-pin" id="pin-bangkok" onclick="togglePin('bangkok')">
+        <circle class="pin-ring" cx="188" cy="282" r="16"/>
+        <circle class="pin-dot" cx="188" cy="282" r="7"/>
+        <line x1="172" y1="282" x2="140" y2="282" stroke="rgba(26,22,18,0.15)" stroke-width="0.8"/>
+        <text class="pin-label" text-anchor="end" x="138" y="279">曼谷</text>
+        <text class="pin-label-en" text-anchor="end" x="138" y="288">Bangkok</text>
+      </g>
+
+      <!-- W30 创意仓库 → 左下标签 -->
+      <g class="map-pin" id="pin-w30" onclick="togglePin('w30')">
+        <circle class="pin-ring" cx="182" cy="296" r="11"/>
+        <circle class="pin-dot" cx="182" cy="296" r="5"/>
+        <line x1="171" y1="301" x2="148" y2="316" stroke="rgba(26,22,18,0.15)" stroke-width="0.8"/>
+        <text class="pin-label" text-anchor="end" x="146" y="319">W30 创意仓库</text>
+        <text class="pin-label-en" text-anchor="end" x="146" y="328">Warehouse 30</text>
+      </g>
+
+      <!-- 郑王庙 Wat Arun → 右下标签 -->
+      <g class="map-pin" id="pin-watarun" onclick="togglePin('watarun')">
+        <circle class="pin-ring" cx="195" cy="298" r="11"/>
+        <circle class="pin-dot" cx="195" cy="298" r="5"/>
+        <line x1="206" y1="303" x2="228" y2="316" stroke="rgba(26,22,18,0.15)" stroke-width="0.8"/>
+        <text class="pin-label" text-anchor="start" x="230" y="319">郑王庙对岸</text>
+        <text class="pin-label-en" text-anchor="start" x="230" y="328">Wat Arun View</text>
+      </g>
+
+      <!-- 比例尺 -->
+      <line x1="240" y1="540" x2="290" y2="540" stroke="rgba(26,22,18,0.2)" stroke-width="1"/>
+      <text x="265" y="552" text-anchor="middle" font-size="9" fill="rgba(26,22,18,0.35)" font-family="DM Sans">200 km</text>
+
+      <!-- 指北针 -->
+      <g transform="translate(272,32)">
+        <circle cx="0" cy="0" r="14" fill="none" stroke="rgba(26,22,18,0.15)" stroke-width="1"/>
+        <polygon points="0,-10 -4,4 0,1 4,4" fill="var(--ink)" opacity="0.7"/>
+        <polygon points="0,10 -4,-4 0,-1 4,-4" fill="rgba(26,22,18,0.2)"/>
+        <text x="0" y="-15" text-anchor="middle" font-size="8" fill="rgba(26,22,18,0.5)" font-family="DM Sans">N</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- 地点列表（点击同步） -->
+  <div class="map-spot-list">
+    <div class="section-label" style="padding:0 28px 12px;">点击地图或列表打卡</div>
+
+    <div class="spot-row" id="spot-bangkok" onclick="togglePin('bangkok')">
+      <div class="spot-dot-wrap"><div class="spot-dot" id="sdot-bangkok"></div></div>
+      <div class="spot-info">
+        <div class="spot-name">曼谷 · Bangkok</div>
+        <div class="spot-desc">暹罗设计酒店 · 顶楼碰杯</div>
+      </div>
+      <div class="spot-tag">Day 1–2</div>
+    </div>
+    <div class="spot-row" id="spot-donmueang" onclick="togglePin('donmueang')">
+      <div class="spot-dot-wrap"><div class="spot-dot" id="sdot-donmueang"></div></div>
+      <div class="spot-info">
+        <div class="spot-name">廊曼机场 · Don Mueang</div>
+        <div class="spot-desc">22:05 落地，泰国第一步</div>
+      </div>
+      <div class="spot-tag">Day 1</div>
+    </div>
+    <div class="spot-row" id="spot-w30" onclick="togglePin('w30')">
+      <div class="spot-dot-wrap"><div class="spot-dot" id="sdot-w30"></div></div>
+      <div class="spot-info">
+        <div class="spot-name">Warehouse 30 · 创意仓库</div>
+        <div class="spot-desc">古着、黑胶、不撞款的宝贝</div>
+      </div>
+      <div class="spot-tag">Day 2</div>
+    </div>
+    <div class="spot-row" id="spot-watarun" onclick="togglePin('watarun')">
+      <div class="spot-dot-wrap"><div class="spot-dot" id="sdot-watarun"></div></div>
+      <div class="spot-info">
+        <div class="spot-name">郑王庙对岸 · Wat Arun View</div>
+        <div class="spot-desc">河对岸看金塔亮灯，无敌机位</div>
+      </div>
+      <div class="spot-tag">Day 2</div>
+    </div>
+    <div class="spot-row" id="spot-thonglor" onclick="togglePin('thonglor')">
+      <div class="spot-dot-wrap"><div class="spot-dot" id="sdot-thonglor"></div></div>
+      <div class="spot-info">
+        <div class="spot-name">通罗区 · Thonglor</div>
+        <div class="spot-desc">The Iron Fairies · 现场爵士</div>
+      </div>
+      <div class="spot-tag">Day 2</div>
+    </div>
+    <div class="spot-row" id="spot-chiangmai" onclick="togglePin('chiangmai')">
+      <div class="spot-dot-wrap"><div class="spot-dot" id="sdot-chiangmai"></div></div>
+      <div class="spot-info">
+        <div class="spot-name">清迈 · Chiang Mai</div>
+        <div class="spot-desc">宁曼路 · 香蕉奶奶 · 巨树咖啡</div>
+      </div>
+      <div class="spot-tag">Day 3–6</div>
+    </div>
+    <div class="spot-row" id="spot-cnxairport" onclick="togglePin('cnxairport')">
+      <div class="spot-dot-wrap"><div class="spot-dot" id="sdot-cnxairport"></div></div>
+      <div class="spot-info">
+        <div class="spot-name">清迈机场 · CNX</div>
+        <div class="spot-desc">保姆车接机 · 返港 19:25</div>
+      </div>
+      <div class="spot-tag">Day 3 / 6</div>
+    </div>
+    <div class="spot-row" id="spot-maetaeng" onclick="togglePin('maetaeng')">
+      <div class="spot-dot-wrap"><div class="spot-dot" id="sdot-maetaeng"></div></div>
+      <div class="spot-info">
+        <div class="spot-name">湄登山谷 · Mae Taeng</div>
+        <div class="spot-desc">丛林民宿 · Mookata星空夜</div>
+      </div>
+      <div class="spot-tag">Day 5</div>
+    </div>
+    <div class="spot-row" id="spot-buatong" onclick="togglePin('buatong')" style="border-bottom:none;">
+      <div class="spot-dot-wrap"><div class="spot-dot" id="sdot-buatong"></div></div>
+      <div class="spot-info">
+        <div class="spot-name">粘粘瀑布 · Bua Tong</div>
+        <div class="spot-desc">逆流而上 · 全程最高光</div>
+      </div>
+      <div class="spot-tag">Day 6</div>
+    </div>
+  </div>
+  <div style="height:20px;"></div>
+</div>
+
+<!-- ══════════════════════════════════════
+     费用弹窗
+══════════════════════════════════════ -->
+<div class="modal-bg" id="modal" onclick="closeModalBg(event)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">记一笔</div>
+    <div class="form-label">记录人</div>
+    <div class="recorder-grid" id="recorder-grid">
+      <div class="rec-btn active" onclick="pickRecorder(this,'Wang Qian')">
+        <span class="rec-av" style="background:#1a1612">汪</span>
+        <span class="rec-name">Wang Qian</span>
+      </div>
+      <div class="rec-btn" onclick="pickRecorder(this,'Zheng Yan')">
+        <span class="rec-av" style="background:#2D7A4F">郑</span>
+        <span class="rec-name">Zheng Yan</span>
+      </div>
+      <div class="rec-btn" onclick="pickRecorder(this,'Xie Kang')">
+        <span class="rec-av" style="background:#5B3E8A">谢</span>
+        <span class="rec-name">Xie Kang</span>
+      </div>
+      <div class="rec-btn" onclick="pickRecorder(this,'Zhou Yang')">
+        <span class="rec-av" style="background:#B85C1A">周</span>
+        <span class="rec-name">Zhou Yang</span>
+      </div>
+      <div class="rec-btn" onclick="pickRecorder(this,'Lin Lin')">
+        <span class="rec-av" style="background:#1A5F8A">林</span>
+        <span class="rec-name">Lin Lin</span>
+      </div>
+      <div class="rec-btn" onclick="pickRecorder(this,'Xiong Siqi')">
+        <span class="rec-av" style="background:#8A1A5F">熊</span>
+        <span class="rec-name">Xiong Siqi</span>
+      </div>
+    </div>
+    <div class="form-label">类别</div>
+    <div class="cat-grid">
+      <div class="cat-opt active" onclick="pickCat(this,'food')">
+        <span class="copt-icon">🍽️</span><span class="copt-name">餐饮</span>
+      </div>
+      <div class="cat-opt" onclick="pickCat(this,'transport')">
+        <span class="copt-icon">🚌</span><span class="copt-name">交通</span>
+      </div>
+      <div class="cat-opt" onclick="pickCat(this,'ticket')">
+        <span class="copt-icon">🎟️</span><span class="copt-name">景点</span>
+      </div>
+      <div class="cat-opt" onclick="pickCat(this,'shop')">
+        <span class="copt-icon">🛍️</span><span class="copt-name">购物</span>
+      </div>
+      <div class="cat-opt" onclick="pickCat(this,'other')">
+        <span class="copt-icon">📦</span><span class="copt-name">其他</span>
+      </div>
+    </div>
+    <div class="form-label">说明</div>
+    <input class="form-input" type="text" id="e-name" placeholder="例：芒果糯米饭 ×6">
+    <div class="form-label">金额（人民币 ¥）</div>
+    <input class="form-input" type="number" id="e-amount" placeholder="输入总金额" inputmode="decimal">
+    <button class="submit-btn" onclick="addExp()">确认记录</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     底部导航
+══════════════════════════════════════ -->
+<nav class="nav-bar">
+  <div class="nav-item active" onclick="goPage('home',this)">
+    <span class="nav-icon">🏠</span><span class="nav-label">首页</span>
+  </div>
+  <div class="nav-item" onclick="goPage('checklist',this)">
+    <span class="nav-icon">📋</span><span class="nav-label">清单</span>
+  </div>
+  <div class="nav-item" onclick="goPage('itinerary',this)">
+    <span class="nav-icon">✈️</span><span class="nav-label">行程</span>
+  </div>
+  <div class="nav-item" onclick="goPage('guide',this)">
+    <span class="nav-icon">🍜</span><span class="nav-label">攻略</span>
+  </div>
+  <div class="nav-item" onclick="goPage('expense',this)">
+    <span class="nav-icon">💰</span><span class="nav-label">费用</span>
+  </div>
+  <div class="nav-item" onclick="goPage('memory',this)">
+    <span class="nav-icon">📍</span><span class="nav-label">足迹</span>
+  </div>
+</nav>
+
+<script>
+// ── 页面切换 ──────────────────────────
+function goPage(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({ top: 0 });
+}
+
+// ── 行程 Day ──────────────────────────
+function switchDay(i) {
+  document.querySelectorAll('.day-tab').forEach((t,j) => t.classList.toggle('active', i===j));
+  document.querySelectorAll('.day-panel').forEach((p,j) => p.classList.toggle('active', i===j));
+  window.scrollTo({ top: document.querySelector('.day-scroll').offsetTop - 1 });
+}
+
+// ── 攻略 Tab ──────────────────────────
+function switchGuide(i) {
+  document.querySelectorAll('.guide-tab-btn').forEach((t,j) => t.classList.toggle('active', i===j));
+  document.querySelectorAll('.guide-panel').forEach((p,j) => p.classList.toggle('active', i===j));
+}
+
+// ── 清单打勾 ──────────────────────────
+function toggleCheck(row) {
+  row.classList.toggle('checked');
+  const box = row.querySelector('.check-box');
+  box.classList.toggle('checked');
+}
+
+// ── 6人联排心情打卡 ──────────────────
+const MEMBERS = [
+  { name:'Wang Qian',  av:'汪', color:'#1a1612' },
+  { name:'Zheng Yan',  av:'郑', color:'#2D7A4F' },
+  { name:'Xie Kang',   av:'谢', color:'#5B3E8A' },
+  { name:'Zhou Yang',  av:'周', color:'#B85C1A' },
+  { name:'Lin Lin',    av:'林', color:'#1A5F8A' },
+  { name:'Xiong Siqi', av:'熊', color:'#8A1A5F' }
+];
+const MOODS_NORMAL = ['🤩','😄','😊','😴','🥵'];
+const MOODS_LAST   = ['😢','🥹','😄','😴','🤩'];
+
+let moodState = JSON.parse(localStorage.getItem('th-mood6') || '{}');
+
+function buildMood6(dayKey) {
+  const wrap = document.getElementById('mood-' + dayKey);
+  if (!wrap) return;
+  const isLastDay = (dayKey === 'd5');
+  const emojis = isLastDay ? MOODS_LAST : MOODS_NORMAL;
+
+  wrap.innerHTML = `
+    <div class="mood6-wrap">
+      <div class="mood6-header">
+        <span class="mood6-title">Mood Check-in</span>
+        <span class="mood6-subtitle">旅途中各自打卡</span>
+      </div>
+      <div class="mood6-list">
+        ${MEMBERS.map(m => {
+          const saved = moodState[dayKey + '-' + m.name] || '';
+          return `
+          <div class="mood6-row">
+            <div class="mood6-av" style="background:${m.color}">${m.av}</div>
+            <div class="mood6-name">${m.name}</div>
+            <div class="mood6-emojis">
+              ${emojis.map(e => `
+                <button class="mood6-btn${saved === e ? ' picked' : ''}"
+                  onclick="pick6('${dayKey}','${m.name}','${e}',this)">${e}</button>
+              `).join('')}
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+}
+
+function pick6(dayKey, name, btn) {
+  const key = dayKey + '-' + name;
+  const emoji = btn.textContent.trim();
+  const row = btn.closest('.mood6-emojis');
+  const alreadyPicked = btn.classList.contains('picked');
+  row.querySelectorAll('.mood6-btn').forEach(b => b.classList.remove('picked'));
+  if (!alreadyPicked) {
+    btn.classList.add('picked');
+    moodState[key] = emoji;
+  } else {
+    delete moodState[key];
+  }
+  localStorage.setItem('th-mood6', JSON.stringify(moodState));
+}
+
+// 旧函数保留防报错
+function selectMood() {}
+
+// ── 费用 ──────────────────────────────
+let exps = JSON.parse(localStorage.getItem('th-exps') || '[]');
+let selCat = 'food';
+let selRecorder = 'Wang Qian';
+const ICONS = { food:'🍽️', transport:'🚌', ticket:'🎟️', shop:'🛍️', other:'📦' };
+const NAMES = { food:'餐饮', transport:'交通', ticket:'景点', shop:'购物', other:'其他' };
+
+function openModal() {
+  document.getElementById('modal').classList.add('open');
+  document.getElementById('e-name').value = '';
+  document.getElementById('e-amount').value = '';
+  // 恢复上次选择的记录人
+  document.querySelectorAll('.rec-btn').forEach(b => {
+    b.classList.toggle('active', b.querySelector('.rec-name').textContent === selRecorder);
+  });
+}
+function closeModalBg(e) {
+  if (e.target === document.getElementById('modal'))
+    document.getElementById('modal').classList.remove('open');
+}
+function pickRecorder(el, name) {
+  document.querySelectorAll('.rec-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  selRecorder = name;
+}
+function pickCat(el, cat) {
+  document.querySelectorAll('.cat-opt').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  selCat = cat;
+}
+function addExp() {
+  const name = document.getElementById('e-name').value.trim();
+  const amt = parseFloat(document.getElementById('e-amount').value);
+  if (!name || isNaN(amt) || amt <= 0) { alert('请填写完整信息'); return; }
+  exps.push({ name, amt, cat: selCat, recorder: selRecorder, date: new Date().toLocaleDateString('zh-CN') });
+  localStorage.setItem('th-exps', JSON.stringify(exps));
+  document.getElementById('modal').classList.remove('open');
+  renderExps();
+}
+function renderExps() {
+  const list = document.getElementById('expense-list');
+  if (!exps.length) {
+    list.innerHTML = '<div class="empty" style="padding:40px 0;"><div class="empty-label">No Records</div><div class="empty-title">还没有记录</div><div class="empty-sub">旅途中点击上方按钮添加消费</div></div>';
+    updateTotals(); return;
+  }
+  list.innerHTML = exps.slice().reverse().map(e => `
+    <div class="expense-row">
+      <div class="exp-icon">${ICONS[e.cat]}</div>
+      <div class="exp-info">
+        <div class="exp-name">${e.name}</div>
+        <div class="exp-meta">${NAMES[e.cat]} · ${e.recorder || '—'} · ${e.date}</div>
+      </div>
+      <div class="exp-amounts">
+        <div class="exp-total">¥${e.amt.toFixed(0)}</div>
+        <div class="exp-per">人均 ¥${(e.amt/6).toFixed(1)}</div>
+      </div>
+    </div>
+  `).join('');
+  updateTotals();
+}
+function updateTotals() {
+  const total = exps.reduce((s,e) => s + e.amt, 0);
+  document.getElementById('total-num').textContent = '¥ ' + total.toFixed(0);
+  document.getElementById('per-num').textContent = '¥ ' + (total/6).toFixed(0);
+  ['food','transport','ticket','shop'].forEach(c => {
+    const s = exps.filter(e => e.cat===c).reduce((a,e)=>a+e.amt,0);
+    document.getElementById('ct-'+c).textContent = '¥' + s.toFixed(0);
+  });
+}
+
+// ── 相册 ──────────────────────────────
+function handlePhotos(ev) {
+  const grid = document.getElementById('photo-grid');
+  grid.querySelectorAll('.photo-cell').forEach(c => { if (c.querySelector('.photo-placeholder')) c.remove(); });
+  Array.from(ev.target.files).forEach(f => {
+    const r = new FileReader();
+    r.onload = e => {
+      const cell = document.createElement('div');
+      cell.className = 'photo-cell';
+      cell.innerHTML = `<img src="${e.target.result}" alt="">`;
+      grid.appendChild(cell);
+    };
+    r.readAsDataURL(f);
+  });
+}
+
+// ── 地图打卡 ──────────────────────────
+const MAP_PINS = ['bangkok','donmueang','w30','watarun','thonglor','chiangmai','cnxairport','maetaeng','buatong'];
+let mapState = JSON.parse(localStorage.getItem('th-map') || '{}');
+
+function togglePin(id) {
+  mapState[id] = !mapState[id];
+  localStorage.setItem('th-map', JSON.stringify(mapState));
+  renderMap();
+}
+
+function renderMap() {
+  const lit = MAP_PINS.filter(id => mapState[id]).length;
+  document.getElementById('map-lit').textContent = lit;
+  const pct = Math.round(lit / MAP_PINS.length * 100);
+  document.getElementById('map-bar').style.width = pct + '%';
+
+  MAP_PINS.forEach(id => {
+    const isLit = !!mapState[id];
+    // SVG pin
+    const pin = document.getElementById('pin-' + id);
+    if (pin) pin.classList.toggle('lit', isLit);
+    // 列表行
+    const row = document.getElementById('spot-' + id);
+    if (row) row.classList.toggle('lit', isLit);
+  });
+}
+
+// ── 感言保存（保留空函数防报错） ─────
+
+
+
+const BUY_TOTAL = 6;
+const EAT_HINTS_DONE = [
+  '继续加油，吃货之路刚开始！🍜',
+  '不错不错，胃口大开中～',
+  '已经打卡一半了，厉害！',
+  '只差一点！肚子撑住！',
+  '全部解锁！泰国美食征服者 🏆'
+];
+const BUY_HINTS_DONE = [
+  '战利品收集中 🛍️',
+  '买买买！行李开始变重了',
+  '已经买了一半，钱包还好吗？',
+  '最后几件！',
+  '全部打卡！行李超重警告 🧳'
+];
+
+let eatState = JSON.parse(localStorage.getItem('th-eat') || '{}');
+let buyState = JSON.parse(localStorage.getItem('th-buy') || '{}');
+
+function toggleEat(el) {
+  const id = el.dataset.id;
+  el.classList.toggle('eaten');
+  eatState[id] = el.classList.contains('eaten');
+  localStorage.setItem('th-eat', JSON.stringify(eatState));
+  updateEatProgress();
+}
+
+function toggleBuy(el) {
+  const id = el.dataset.id;
+  el.classList.toggle('eaten');
+  buyState[id] = el.classList.contains('eaten');
+  localStorage.setItem('th-buy', JSON.stringify(buyState));
+  updateBuyProgress();
+}
+
+function updateEatProgress() {
+  const done = Object.values(eatState).filter(Boolean).length;
+  const pct = Math.round(done / EAT_TOTAL * 100);
+  document.getElementById('eat-done').textContent = done;
+  const bar = document.getElementById('eat-bar');
+  bar.style.width = pct + '%';
+  bar.classList.toggle('all-done', done === EAT_TOTAL);
+  const idx = Math.min(Math.floor(done / EAT_TOTAL * 4), 4);
+  if (done > 0) document.getElementById('eat-hint').textContent = EAT_HINTS_DONE[idx];
+}
+
+function updateBuyProgress() {
+  const done = Object.values(buyState).filter(Boolean).length;
+  const pct = Math.round(done / BUY_TOTAL * 100);
+  document.getElementById('buy-done').textContent = done;
+  const bar = document.getElementById('buy-bar');
+  bar.style.width = pct + '%';
+  bar.classList.toggle('all-done', done === BUY_TOTAL);
+  const idx = Math.min(Math.floor(done / BUY_TOTAL * 4), 4);
+  if (done > 0) document.getElementById('buy-hint').textContent = BUY_HINTS_DONE[idx];
+}
+
+function restoreEatBuy() {
+  // 必吃
+  document.querySelectorAll('.eat-item[data-id^="eat-"]').forEach(el => {
+    if (eatState[el.dataset.id]) el.classList.add('eaten');
+  });
+  updateEatProgress();
+  // 必买
+  document.querySelectorAll('.eat-item[data-id^="buy-"]').forEach(el => {
+    if (buyState[el.dataset.id]) el.classList.add('eaten');
+  });
+  updateBuyProgress();
+}
+
+// ── 感言保存（保留空函数防报错） ─────
+function saveQ() {}
+
+// ── 初始化 ────────────────────────────
+(function init() {
+  renderExps();
+  restoreEatBuy();
+  renderMap();
+  // 恢复已保存的心情打卡状态
+  Object.entries(moodState).forEach(([key, emoji]) => {
+    const [dayKey, ...nameParts] = key.split('-');
+    const name = nameParts.join('-');
+    const wrap = document.getElementById('mood-' + dayKey);
+    if (!wrap) return;
+    wrap.querySelectorAll('.mood6-row').forEach(row => {
+      const nameEl = row.querySelector('.mood6-name');
+      if (nameEl && nameEl.textContent === name) {
+        row.querySelectorAll('.mood6-btn').forEach(btn => {
+          if (btn.textContent.trim() === emoji) btn.classList.add('picked');
+        });
+      }
+    });
+  });
+})();
+
+</script>
+
+</body>
+</html>
