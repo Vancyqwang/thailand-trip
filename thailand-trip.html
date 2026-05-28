@@ -761,27 +761,67 @@ body {
 .expense-row {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 14px 0;
+  gap: 12px;
+  padding: 12px 0;
   border-bottom: 1px solid var(--rule-light);
+  transition: opacity 0.2s;
 }
 .expense-row:last-child { border-bottom: none; }
+.expense-row.settled { opacity: 0.45; }
+.expense-row.settled .exp-name { text-decoration: line-through; }
 .exp-icon {
-  width: 36px; height: 36px;
+  width: 34px; height: 34px;
   border-radius: var(--radius-sm);
   background: var(--cream);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 15px;
   flex-shrink: 0;
 }
-.exp-info { flex: 1; }
-.exp-name { font-size: 14px; color: var(--ink); font-weight: 500; margin-bottom: 2px; }
+.exp-info { flex: 1; min-width: 0; }
+.exp-name { font-size: 14px; color: var(--ink); font-weight: 500; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .exp-meta { font-size: 11px; color: var(--ink-light); letter-spacing: 0.3px; }
-.exp-amounts { text-align: right; }
-.exp-total { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; color: var(--ink); }
-.exp-per { font-size: 11px; color: var(--ink-light); margin-top: 2px; }
+.exp-amounts { text-align: right; flex-shrink: 0; }
+.exp-total { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); }
+.exp-per { font-size: 10px; color: var(--ink-light); margin-top: 1px; }
+
+/* 操作按钮行 */
+.exp-actions {
+  display: flex;
+  gap: 6px;
+  padding: 4px 0 10px;
+  justify-content: flex-end;
+  border-bottom: 1px solid var(--rule-light);
+}
+.expense-row + .exp-actions { margin-top: -2px; }
+.exp-act-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--rule);
+  background: none;
+  color: var(--ink-light);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.exp-act-btn:active { opacity: 0.6; }
+.exp-act-btn.settle { border-color: var(--green, #2D7A4F); color: var(--green, #2D7A4F); }
+.exp-act-btn.settled-btn { background: var(--cream); color: var(--ink-faint); border-color: var(--rule-light); }
+.exp-act-btn.edit-btn { color: var(--ink-mid); }
+.exp-act-btn.del-btn { color: #c0392b; border-color: rgba(192,57,43,0.3); }
+
+/* 分组核销状态 */
+.exp-day-header.all-settled .exp-day-tag {
+  background: var(--ink-faint);
+}
+.exp-day-header.all-settled .exp-day-total::after {
+  content: ' ✓';
+  color: var(--green, #2D7A4F);
+  font-size: 11px;
+}
 
 /* ─── 相册 ──────────────────────────── */
 .album-btn {
@@ -3446,11 +3486,111 @@ function pickCat(el, cat) {
   el.classList.add('active');
   selCat = cat;
 }
+function renderExps() {
+  const list = document.getElementById('expense-list');
+  if (!exps.length) {
+    list.innerHTML = '<div class="empty" style="padding:40px 0;"><div class="empty-label">No Records</div><div class="empty-title">还没有记录</div><div class="empty-sub">旅途中点击上方按钮添加消费</div></div>';
+    updateTotals(); return;
+  }
+  // 按 day 分组
+  const groups = {};
+  const dayOrder = ['Day 1','Day 2','Day 3','Day 4','Day 5','Day 6'];
+  exps.forEach((e, idx) => {
+    const k = e.day || '其他';
+    if (!groups[k]) groups[k] = { label: e.dayLabel || k, items: [], total: 0, unsettled: 0 };
+    groups[k].items.push({ ...e, _idx: idx });
+    groups[k].total += e.amt;
+    if (!e.settled) groups[k].unsettled += e.amt;
+  });
+  const sortedKeys = Object.keys(groups).sort((a,b) => {
+    const ia = dayOrder.indexOf(a), ib = dayOrder.indexOf(b);
+    if (ia === -1 && ib === -1) return 0;
+    if (ia === -1) return 1; if (ib === -1) return -1;
+    return ia - ib;
+  });
+  list.innerHTML = sortedKeys.map(k => {
+    const g = groups[k];
+    const allSettled = g.items.every(e => e.settled);
+    const rows = g.items.map(e => {
+      const idx = e._idx;
+      const settledCls = e.settled ? ' settled' : '';
+      const settleLbl = e.settled ? '已核销' : '核销';
+      const settleCls = e.settled ? 'exp-act-btn settled-btn' : 'exp-act-btn settle';
+      return `
+      <div class="expense-row${settledCls}" id="erow-${idx}">
+        <div class="exp-icon">${ICONS[e.cat]}</div>
+        <div class="exp-info">
+          <div class="exp-name">${e.name}</div>
+          <div class="exp-meta">${NAMES[e.cat]} · ${e.recorder || '—'}</div>
+        </div>
+        <div class="exp-amounts">
+          <div class="exp-total">¥${e.amt.toFixed(0)}</div>
+          <div class="exp-per">人均 ¥${(e.amt/6).toFixed(1)}</div>
+        </div>
+      </div>
+      <div class="exp-actions">
+        <button class="${settleCls}" onclick="settleExp(${idx})">${settleLbl}</button>
+        <button class="exp-act-btn edit-btn" onclick="editExp(${idx})">编辑</button>
+        <button class="exp-act-btn del-btn" onclick="deleteExp(${idx})">删除</button>
+      </div>`;
+    }).join('');
+    const headerCls = allSettled ? ' all-settled' : '';
+    const unsettledHint = allSettled ? '' : `<span style="font-size:10px;color:var(--ink-faint);margin-left:4px;">待核¥${g.unsettled.toFixed(0)}</span>`;
+    return `
+      <div class="exp-day-group">
+        <div class="exp-day-header${headerCls}">
+          <span class="exp-day-tag">${k}</span>
+          <span class="exp-day-label">${g.label}</span>
+          <span class="exp-day-total">¥${g.total.toFixed(0)}</span>
+          ${unsettledHint}
+        </div>
+        ${rows}
+      </div>`;
+  }).join('');
+  updateTotals();
+}
+
+// ── 核销 ──────────────────────────────
+function settleExp(idx) {
+  exps[idx].settled = !exps[idx].settled;
+  localStorage.setItem('th-exps', JSON.stringify(exps));
+  renderExps();
+}
+
+// ── 删除 ──────────────────────────────
+function deleteExp(idx) {
+  if (!confirm('确认删除「' + exps[idx].name + '」？')) return;
+  exps.splice(idx, 1);
+  localStorage.setItem('th-exps', JSON.stringify(exps));
+  renderExps();
+}
+
+// ── 编辑（复用弹窗，预填内容）──────────
+let editingIdx = -1;
+function editExp(idx) {
+  editingIdx = idx;
+  const e = exps[idx];
+  openModal();
+  document.getElementById('e-name').value = e.name;
+  document.getElementById('e-amount').value = e.amt;
+  document.getElementById('e-day').value = e.day || 'auto';
+  // 还原类别
+  document.querySelectorAll('.cat-opt').forEach(c => c.classList.remove('active'));
+  document.querySelector(`.cat-opt[onclick*="'${e.cat}'"]`)?.classList.add('active');
+  selCat = e.cat;
+  // 还原记录人
+  selRecorder = e.recorder || 'Wang Qian';
+  document.querySelectorAll('.rec-btn').forEach(b => {
+    b.classList.toggle('active', b.querySelector('.rec-name').textContent === selRecorder);
+  });
+  document.querySelector('.submit-btn').textContent = '保存修改';
+}
+
+// 重写 addExp 支持编辑模式
 function addExp() {
   const name = document.getElementById('e-name').value.trim();
   const amt = parseFloat(document.getElementById('e-amount').value);
   if (!name || isNaN(amt) || amt <= 0) { alert('请填写完整信息'); return; }
-  // 自动判断行程 Day
   const today = new Date();
   const tripDays = [
     { day: 'Day 1', date: '10/1', label: '10月1日 · 曼谷' },
@@ -3471,61 +3611,18 @@ function addExp() {
     dayTag = matched ? matched.day : today.toLocaleDateString('zh-CN');
     dayLabel = matched ? matched.label : today.toLocaleDateString('zh-CN');
   }
-  exps.push({ name, amt, cat: selCat, recorder: selRecorder, day: dayTag, dayLabel, ts: Date.now() });
+  if (editingIdx >= 0) {
+    // 编辑模式：更新原条目，保留 settled 状态
+    exps[editingIdx] = { ...exps[editingIdx], name, amt, cat: selCat, recorder: selRecorder, day: dayTag, dayLabel };
+    editingIdx = -1;
+    document.querySelector('.submit-btn').textContent = '确认记录';
+  } else {
+    exps.push({ name, amt, cat: selCat, recorder: selRecorder, day: dayTag, dayLabel, ts: Date.now() });
+  }
   localStorage.setItem('th-exps', JSON.stringify(exps));
   document.getElementById('modal').classList.remove('open');
   renderExps();
 }
-function renderExps() {
-  const list = document.getElementById('expense-list');
-  if (!exps.length) {
-    list.innerHTML = '<div class="empty" style="padding:40px 0;"><div class="empty-label">No Records</div><div class="empty-title">还没有记录</div><div class="empty-sub">旅途中点击上方按钮添加消费</div></div>';
-    updateTotals(); return;
-  }
-  // 按 day 分组
-  const groups = {};
-  const dayOrder = ['Day 1','Day 2','Day 3','Day 4','Day 5','Day 6'];
-  exps.forEach(e => {
-    const k = e.day || '其他';
-    if (!groups[k]) groups[k] = { label: e.dayLabel || k, items: [], total: 0 };
-    groups[k].items.push(e);
-    groups[k].total += e.amt;
-  });
-  // 按行程顺序排序
-  const sortedKeys = Object.keys(groups).sort((a,b) => {
-    const ia = dayOrder.indexOf(a), ib = dayOrder.indexOf(b);
-    if (ia === -1 && ib === -1) return 0;
-    if (ia === -1) return 1;
-    if (ib === -1) return -1;
-    return ia - ib;
-  });
-  list.innerHTML = sortedKeys.map(k => {
-    const g = groups[k];
-    const rows = g.items.map(e => `
-      <div class="expense-row">
-        <div class="exp-icon">${ICONS[e.cat]}</div>
-        <div class="exp-info">
-          <div class="exp-name">${e.name}</div>
-          <div class="exp-meta">${NAMES[e.cat]} · ${e.recorder || '—'}</div>
-        </div>
-        <div class="exp-amounts">
-          <div class="exp-total">¥${e.amt.toFixed(0)}</div>
-          <div class="exp-per">人均 ¥${(e.amt/6).toFixed(1)}</div>
-        </div>
-      </div>`).join('');
-    return `
-      <div class="exp-day-group">
-        <div class="exp-day-header">
-          <span class="exp-day-tag">${k}</span>
-          <span class="exp-day-label">${g.label}</span>
-          <span class="exp-day-total">¥${g.total.toFixed(0)}</span>
-        </div>
-        ${rows}
-      </div>`;
-  }).join('');
-  updateTotals();
-}
-function updateTotals() {
   const total = exps.reduce((s,e) => s + e.amt, 0);
   document.getElementById('total-num').textContent = '¥ ' + total.toFixed(0);
   document.getElementById('per-num').textContent = '¥ ' + (total/6).toFixed(0);
