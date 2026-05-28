@@ -3566,7 +3566,7 @@ function renderExps() {
     const rows = g.items.map(e => {
       const idx = e._idx;
       const settledCls = e.settled ? ' settled' : '';
-      const settleLbl = e.settled ? '已核销' : '核销';
+      // settleLbl now inline
       const settleCls = e.settled ? 'exp-act-btn settled-btn' : 'exp-act-btn settle';
       return `
       <div class="expense-row${settledCls}" id="erow-${idx}">
@@ -3581,9 +3581,9 @@ function renderExps() {
         </div>
       </div>
       <div class="exp-actions">
-        <button class="${settleCls}" onclick="settleExp(${idx})">${settleLbl}</button>
-        <button class="exp-act-btn edit-btn" onclick="editExp(${idx})">编辑</button>
-        <button class="exp-act-btn del-btn" onclick="deleteExp(${idx})">删除</button>
+        <button class="${settleCls}" onclick="settleExp(${idx})">${e.settled ? '&#x2714; Settled' : 'Settle'}</button>
+        <button class="exp-act-btn edit-btn" onclick="editExp(${idx})">Edit</button>
+        <button class="exp-act-btn del-btn" onclick="deleteExp(${idx})">Delete</button>
       </div>`;
     }).join('');
     const headerCls = allSettled ? ' all-settled' : '';
@@ -3611,7 +3611,7 @@ function settleExp(idx) {
 
 // ── 删除 ──────────────────────────────
 function deleteExp(idx) {
-  if (!confirm('确认删除「' + exps[idx].name + '」？')) return;
+  if (!confirm('Delete: ' + exps[idx].name + '?')) return;
   exps.splice(idx, 1);
   localStorage.setItem('th-exps', JSON.stringify(exps));
   renderExps();
