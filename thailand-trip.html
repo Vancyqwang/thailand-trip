@@ -3678,6 +3678,8 @@ function addExp() {
   document.getElementById('modal').classList.remove('open');
   renderExps();
 }
+
+function updateTotals() {
   const total = exps.reduce((s,e) => s + e.amt, 0);
   document.getElementById('total-num').textContent = '¥ ' + total.toFixed(0);
   document.getElementById('per-num').textContent = '¥ ' + (total/6).toFixed(0);
